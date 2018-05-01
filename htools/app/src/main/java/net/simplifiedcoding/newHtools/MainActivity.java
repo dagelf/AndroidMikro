@@ -7,6 +7,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
+import com.google.firebase.database.FirebaseDatabase;
+
 import net.simplifiedcoding.bottomnavigationexample.R;
 
 //implement the interface OnNavigationItemSelectedListener in your activity class
@@ -17,6 +27,11 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("nomes");
+        myRef.setValue("Hello World");
+
 
         //loading the default fragment
         loadFragment(new HomeFragment());
