@@ -41,13 +41,12 @@ public class HomeFragment extends Fragment {
 
 
         PieChart mPieChart = (PieChart) vhome.findViewById(R.id.piechart);
-        mPieChart.addPieSlice(new PieModel("Freetime", 15, Color.parseColor("#FE6DA8")));
-        mPieChart.addPieSlice(new PieModel("Sleep", 25, Color.parseColor("#56B7F1")));
-        mPieChart.addPieSlice(new PieModel("Work", 35, Color.parseColor("#CDA67F")));
-        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
+        mPieChart.addPieSlice(new PieModel("Masculino", 50, Color.parseColor("#FE6DA8")));
+        mPieChart.addPieSlice(new PieModel("Femino", 45, Color.parseColor("#56B7F1")));
+        mPieChart.addPieSlice(new PieModel("Outros", 5, Color.parseColor("#CDA67F")));
 
         ValueLineChart mCubicValueLineChart = (ValueLineChart) vhome.findViewById(R.id.cubiclinechart);
-        
+
         ValueLineSeries series = new ValueLineSeries();
         series.setColor(0xFF56B7F1);
 
