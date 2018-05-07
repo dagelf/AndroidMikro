@@ -5,41 +5,35 @@
         android:layout_height="match_parent">
 
     <org.eazegraph.lib.charts.PieChart
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/piechart"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="151dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="250dp"
         android:padding="8dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="20dp"
         app:egLegendTextSize="18sp"
         app:egUsePieRotation="true"
-        app:egValueTextSize="36sp"/>
+        app:egValueTextSize="36sp" />
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/home"
-        android:layout_width="0dp"
-        android:layout_height="212dp">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
-            android:layout_height="212dp"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintBottom_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" >
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>
-
-    </android.support.constraint.ConstraintLayout>
+    <org.eazegraph.lib.charts.ValueLineChart
+        android:id="@+id/cubiclinechart"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:visibility="visible"
+        app:egCurveSmoothness="0.4"
+        app:egIndicatorLineColor="#FE6DA8"
+        app:egLegendHeight="40dp"
+        app:egShowStandardValue="true"
+        app:egUseCubic="true"
+        app:egUseOverlapFill="true" />
 
 
 </FrameLayout>
