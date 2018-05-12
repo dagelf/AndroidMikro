@@ -25,6 +25,8 @@ public class users extends Fragment {
     private EditText editEmail;
     private EditText editSenha;
     private EditText editNome;
+    private EditText editFone;
+    private EditText editData;
     private Button btnSalvar;
 
 
@@ -39,6 +41,7 @@ public class users extends Fragment {
         editEmail = vUser.findViewById(R.id.cadEmail);
         editNome = vUser.findViewById(R.id.cadNome);
         editSenha = vUser.findViewById(R.id.cadSenha);
+        editData = vUser.findViewById(R.id.cadData);
         btnSalvar = (Button) vUser.findViewById(R.id.btnSalvar);
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
@@ -52,8 +55,13 @@ public class users extends Fragment {
 
     private void salvar(){
 
+        final String usuario = editEmail.getText().toString().trim();
+        String senha = editSenha.getText().toString().trim();
+        String nome = editNome.getText().toString().trim();
+        String data = editData.getText().toString().trim();
 
-        Toast toast = Toast.makeText(getView().getContext(), "Clickko",Toast.LENGTH_LONG);
+
+        Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+nome,Toast.LENGTH_LONG);
         toast.show();
     }
 

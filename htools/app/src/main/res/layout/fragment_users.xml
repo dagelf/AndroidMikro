@@ -25,10 +25,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.885"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cadEmail2" />
+            app:layout_constraintTop_toBottomOf="@+id/cadEmail" />
 
         <EditText
-            android:id="@+id/cadEmail2"
+            android:id="@+id/cadEmail"
             android:layout_width="0dp"
             android:layout_height="39dp"
             android:layout_alignLeft="@+id/cadNome"
@@ -77,7 +77,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.466"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2" />
+            app:layout_constraintTop_toBottomOf="@+id/cadData" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
@@ -118,7 +118,7 @@
             android:text="Masculino"
             app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintTop_toBottomOf="@+id/cadData"
             app:layout_constraintVertical_bias="0.181" />
 
         <RadioButton
@@ -133,11 +133,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.547"
             app:layout_constraintStart_toEndOf="@+id/radioButton"
-            app:layout_constraintTop_toBottomOf="@+id/editText2"
+            app:layout_constraintTop_toBottomOf="@+id/cadData"
             app:layout_constraintVertical_bias="0.181" />
 
         <EditText
-            android:id="@+id/editText2"
+            android:id="@+id/cadData"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
