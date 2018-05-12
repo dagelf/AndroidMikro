@@ -4,8 +4,6 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BottomNavigationExample.iml" filepath="$PROJECT_DIR$/BottomNavigationExample.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/htools.iml" filepath="$PROJECT_DIR$/htools.iml" />
       <module fileurl="file://$PROJECT_DIR$/htools.iml" filepath="$PROJECT_DIR$/htools.iml" />
     </modules>
   </component>
