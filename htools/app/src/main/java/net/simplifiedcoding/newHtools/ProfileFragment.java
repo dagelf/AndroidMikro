@@ -20,7 +20,7 @@ public class ProfileFragment extends Fragment {
     public ProfileFragment(){
 
     }
-    private int fragment_profile;
+
 
     @Nullable
     @Override
