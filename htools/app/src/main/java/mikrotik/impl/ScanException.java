@@ -1,4 +1,4 @@
-package me.legrange.mikrotik.impl;
+package mikrotik.impl;
 
 /**
  * Exception thrown if the scanner encounters an error while scanning a command line.

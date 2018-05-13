@@ -1,4 +1,4 @@
-package me.legrange.mikrotik.impl;
+package mikrotik.impl;
 
 /**
  * A command parameter

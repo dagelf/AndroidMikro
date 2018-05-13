@@ -13,25 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.legrange.mikrotik.impl;
+package mikrotik.impl;
 
 import java.util.Locale;
-
-import static me.legrange.mikrotik.impl.Scanner.Token.AND;
-import static me.legrange.mikrotik.impl.Scanner.Token.COMMA;
-import static me.legrange.mikrotik.impl.Scanner.Token.EOL;
-import static me.legrange.mikrotik.impl.Scanner.Token.EQUALS;
-import static me.legrange.mikrotik.impl.Scanner.Token.LESS;
-import static me.legrange.mikrotik.impl.Scanner.Token.MORE;
-import static me.legrange.mikrotik.impl.Scanner.Token.NOT;
-import static me.legrange.mikrotik.impl.Scanner.Token.NOT_EQUALS;
-import static me.legrange.mikrotik.impl.Scanner.Token.OR;
-import static me.legrange.mikrotik.impl.Scanner.Token.PIPE;
-import static me.legrange.mikrotik.impl.Scanner.Token.RETURN;
-import static me.legrange.mikrotik.impl.Scanner.Token.SLASH;
-import static me.legrange.mikrotik.impl.Scanner.Token.TEXT;
-import static me.legrange.mikrotik.impl.Scanner.Token.WHERE;
-import static me.legrange.mikrotik.impl.Scanner.Token.WS;
 
 /**
  * A simple scanner.
@@ -77,25 +61,25 @@ class Scanner {
         text = null;
         switch (c) {
             case '\n':
-                return EOL;
+                return Token.EOL;
             case ' ':
             case '\t':
                 return whiteSpace();
             case ',':
                 nextChar();
-                return COMMA;
+                return Token.COMMA;
             case '/':
                 nextChar();
-                return SLASH;
+                return Token.SLASH;
             case '<':
                 nextChar();
-                return LESS;
+                return Token.LESS;
             case '>':
                 nextChar();
-                return MORE;
+                return Token.MORE;
             case '=':
                 nextChar();
-                return EQUALS;
+                return Token.EQUALS;
             case '!':
                 return pipe();
             case '"':
@@ -137,17 +121,17 @@ class Scanner {
         String val = text.toString().toLowerCase(Locale.getDefault());
         switch (val) {
             case "where":
-                return WHERE;
+                return Token.WHERE;
             case "not":
-                return NOT;
+                return Token.NOT;
             case "and":
-                return AND;
+                return Token.AND;
             case "or":
-                return OR;
+                return Token.OR;
             case "return":
-                return RETURN;
+                return Token.RETURN;
         }
-        return TEXT;
+        return Token.TEXT;
     }
 
     /**
@@ -164,7 +148,7 @@ class Scanner {
             nextChar();
         }
         nextChar(); // eat the '"'
-        return TEXT;
+        return Token.TEXT;
     }
 
     /**
@@ -174,9 +158,9 @@ class Scanner {
         nextChar(); // eat !
         if (c == '=') {
             nextChar(); // eat =
-            return NOT_EQUALS;
+            return Token.NOT_EQUALS;
         }
-        return PIPE;
+        return Token.PIPE;
     }
 
     /**
@@ -186,7 +170,7 @@ class Scanner {
         while ((c == ' ') || (c == '\t')) {
             nextChar();
         }
-        return WS;
+        return Token.WS;
     }
 
     /**
