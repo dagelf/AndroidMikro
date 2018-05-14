@@ -1,4 +1,4 @@
-package mikrotik.impl;
+package me.legrange.mikrotik.impl;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,7 +8,6 @@ import java.nio.charset.Charset;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
 import me.legrange.mikrotik.ApiConnectionException;
 
 /**

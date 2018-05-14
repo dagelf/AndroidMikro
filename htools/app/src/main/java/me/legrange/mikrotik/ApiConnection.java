@@ -1,10 +1,8 @@
-package mikrotik;
+package me.legrange.mikrotik;
 
 import java.util.List;
 import java.util.Map;
-
 import javax.net.SocketFactory;
-
 import me.legrange.mikrotik.impl.ApiConnectionImpl;
 
 /**

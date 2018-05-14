@@ -13,10 +13,10 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package mikrotik.impl;
+package me.legrange.mikrotik.impl;
 
 import java.util.Locale;
-
+import static me.legrange.mikrotik.impl.Scanner.Token.*;
 /**
  * A simple scanner.
  *
@@ -61,25 +61,25 @@ class Scanner {
         text = null;
         switch (c) {
             case '\n':
-                return Token.EOL;
+                return EOL;
             case ' ':
             case '\t':
                 return whiteSpace();
             case ',':
                 nextChar();
-                return Token.COMMA;
+                return COMMA;
             case '/':
                 nextChar();
-                return Token.SLASH;
+                return SLASH;
             case '<':
                 nextChar();
-                return Token.LESS;
+                return LESS;
             case '>':
                 nextChar();
-                return Token.MORE;
+                return MORE;
             case '=':
                 nextChar();
-                return Token.EQUALS;
+                return EQUALS;
             case '!':
                 return pipe();
             case '"':
@@ -121,17 +121,17 @@ class Scanner {
         String val = text.toString().toLowerCase(Locale.getDefault());
         switch (val) {
             case "where":
-                return Token.WHERE;
+                return WHERE;
             case "not":
-                return Token.NOT;
+                return NOT;
             case "and":
-                return Token.AND;
+                return AND;
             case "or":
-                return Token.OR;
+                return OR;
             case "return":
-                return Token.RETURN;
+                return RETURN;
         }
-        return Token.TEXT;
+        return TEXT;
     }
 
     /**
@@ -148,7 +148,7 @@ class Scanner {
             nextChar();
         }
         nextChar(); // eat the '"'
-        return Token.TEXT;
+        return TEXT;
     }
 
     /**
@@ -158,9 +158,9 @@ class Scanner {
         nextChar(); // eat !
         if (c == '=') {
             nextChar(); // eat =
-            return Token.NOT_EQUALS;
+            return NOT_EQUALS;
         }
-        return Token.PIPE;
+        return PIPE;
     }
 
     /**
@@ -170,7 +170,7 @@ class Scanner {
         while ((c == ' ') || (c == '\t')) {
             nextChar();
         }
-        return Token.WS;
+        return WS;
     }
 
     /**

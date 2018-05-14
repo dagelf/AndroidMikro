@@ -1,4 +1,4 @@
-package mikrotik.impl;
+package me.legrange.mikrotik.impl;
 
 import me.legrange.mikrotik.MikrotikApiException;
 

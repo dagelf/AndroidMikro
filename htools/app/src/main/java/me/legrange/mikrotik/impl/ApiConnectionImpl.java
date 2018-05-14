@@ -1,4 +1,4 @@
-package mikrotik.impl;
+package me.legrange.mikrotik.impl;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -14,9 +14,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingQueue;
-
 import javax.net.SocketFactory;
-
 import me.legrange.mikrotik.ApiConnection;
 import me.legrange.mikrotik.ApiConnectionException;
 import me.legrange.mikrotik.MikrotikApiException;

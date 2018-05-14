@@ -1,4 +1,4 @@
-package mikrotik.impl;
+package me.legrange.mikrotik.impl;
 
 /**
  * Super type of possible API responses

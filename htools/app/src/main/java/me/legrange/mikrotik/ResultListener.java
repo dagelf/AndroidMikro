@@ -1,4 +1,4 @@
-package mikrotik;
+package me.legrange.mikrotik;
 
 import java.util.Map;
 

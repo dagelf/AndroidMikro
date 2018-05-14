@@ -1,4 +1,4 @@
-package mikrotik;
+package me.legrange.mikrotik;
 
 /**
  * Exception thrown if the Api experiences a connection problem
