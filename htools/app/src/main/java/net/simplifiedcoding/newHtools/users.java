@@ -69,11 +69,12 @@ public class users extends Fragment {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(LOG_TAG, "ANTES TOAST");
-                Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
-                toast.show();
-                mt = new MyTask();
-                mt.execute();
+//                Log.d(LOG_TAG, "ANTES TOAST");
+//                Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
+//                toast.show();
+//                mt = new MyTask();
+//                mt.execute();
+                salvar();
 
             }
         });
@@ -103,12 +104,48 @@ public class users extends Fragment {
             editSenha.requestFocus();
             return;
         }
-//
+        mAuth.signInWithEmailAndPassword(usuario, senha)
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+
+                        if(task.isSuccessful()){
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
+
+                            Map<String, Object> userInfos = new HashMap<>();
+                            userInfos.put("usuario",usuario);
+                            userInfos.put("email",usuario);
+                            userRef.setValue(userInfos);
+                            //finish();
+
+                        }else{
+                            try{
+                                throw  task.getException();
+
+                            }catch (FirebaseAuthWeakPasswordException e){
+                                editSenha.setError("Senha Fraca");
+                                editSenha.requestFocus();
+                            }catch (FirebaseAuthInvalidCredentialsException e){
+                                editEmail.setError("Email invalido !");
+                                editEmail.requestFocus();
+                            }catch (FirebaseAuthUserCollisionException e){
+                                editEmail.setError("Email ja existe !");
+                                editEmail.requestFocus();
+                            }catch (Exception e){
+                                Log.e("Cadastro", e.getMessage());
+                            }
+                        }
+                    }
+
+                });
+
 //        mAuth.createUserWithEmailAndPassword(usuario,senha)
 //                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
 //
 //                });
-        //
+//
 //        Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+nome,Toast.LENGTH_LONG);
 //        toast.show();
     }
