@@ -69,11 +69,12 @@ public class users extends Fragment {
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Log.d(LOG_TAG, "ANTES TOAST");
                 Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
                 toast.show();
                 mt = new MyTask();
                 mt.execute();
+
             }
         });
         return vUser;
