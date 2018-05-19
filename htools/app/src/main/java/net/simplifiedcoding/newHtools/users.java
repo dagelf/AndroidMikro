@@ -70,11 +70,11 @@ public class users extends Fragment {
             @Override
             public void onClick(View v) {
 //                Log.d(LOG_TAG, "ANTES TOAST");
-//                Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
-//                toast.show();
-//                mt = new MyTask();
-//                mt.execute();
-                salvar();
+                Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
+                toast.show();
+                mt = new MyTask();
+                mt.execute();
+                  salvar();
 
             }
         });
@@ -104,21 +104,23 @@ public class users extends Fragment {
             editSenha.requestFocus();
             return;
         }
-        mAuth.signInWithEmailAndPassword(usuario, senha)
+
+
+        mAuth.createUserWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
-
-                            Map<String, Object> userInfos = new HashMap<>();
-                            userInfos.put("usuario",usuario);
-                            userInfos.put("email",usuario);
-                            userRef.setValue(userInfos);
-                            //finish();
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
+//
+//                            Map<String, Object> userInfos = new HashMap<>();
+//                            userInfos.put("usuario",usuario);
+//                            userInfos.put("email",usuario);
+//                            userRef.setValue(userInfos);
+//                            //finish();
 
                         }else{
                             try{
