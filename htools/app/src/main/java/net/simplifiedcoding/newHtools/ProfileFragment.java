@@ -3,6 +3,7 @@ package net.simplifiedcoding.newHtools;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -64,8 +65,16 @@ public class ProfileFragment extends Fragment {
         );
         listView.setAdapter(listViewAdapter);
 
-
+        FirebaseUser currentUser = mAuth.getCurrentUser();
         //new
+        ///FirebaseUser user = mAuth.getCurrentUser();
+//        Log.d("user",user.getDisplayName());
+//        if(user == null) {
+//            getActivity().finish();
+//            ///getUserInfo();
+//        }
+
+
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
 
@@ -74,12 +83,9 @@ public class ProfileFragment extends Fragment {
         return vProfile;
     }
 
-    private void start(){
-        FirebaseUser user = mAuth.getCurrentUser();
-        if(user == null) getActivity().finish();
 
-        getUserInfo();
-    }
+
+
 
     private void getUserInfo(){
         uid = mAuth.getCurrentUser().getUid();
@@ -89,11 +95,12 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 usuario = dataSnapshot.child("usuario").getValue(String.class);
+                Log.d("usuario", usuario);
 
-                seguindo.clear();
-                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
-                    seguindo.add(s.getValue(String.class));
-                }
+                //seguindo.clear();
+//                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
+//                    seguindo.add(s.getValue(String.class));
+//                }
 
 //                TextView headerUsuario = findViewById(R.id.headerUsuario);
 //                headerUsuario.setText(usuario);
