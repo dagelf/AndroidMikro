@@ -70,6 +70,47 @@ public class ProfileFragment extends Fragment {
         database = FirebaseDatabase.getInstance();
 
 
+    ////////////////
         return vProfile;
     }
-}
+
+    private void start(){
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null) getActivity().finish();
+
+        getUserInfo();
+    }
+
+    private void getUserInfo(){
+        uid = mAuth.getCurrentUser().getUid();
+
+        DatabaseReference userRef = database.getReference("users/" + uid);
+        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                usuario = dataSnapshot.child("usuario").getValue(String.class);
+
+                seguindo.clear();
+                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
+                    seguindo.add(s.getValue(String.class));
+                }
+
+//                TextView headerUsuario = findViewById(R.id.headerUsuario);
+//                headerUsuario.setText(usuario);
+//
+//                TextView headerSeguindo = findViewById(R.id.headerSeguindo);
+//                headerSeguindo.setText("Seguindo: " + seguindo.size());
+//
+//                setTweetListener();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+    }
+
+    }
