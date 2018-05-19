@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import net.simplifiedcoding.bottomnavigationexample.R;
 
@@ -64,16 +65,16 @@ public class ProfileFragment extends Fragment {
                 values
         );
         listView.setAdapter(listViewAdapter);
-        mAuth = FirebaseAuth.getInstance();
 
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+
+
         //new
-        ///FirebaseUser user = mAuth.getCurrentUser();
-//        Log.d("user",user.getDisplayName());
-//        if(user == null) {
-//            getActivity().finish();
-//            ///getUserInfo();
-//        }
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null) {
+            //getActivity().finish();
+            getUserInfo();
+        }
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -96,7 +97,9 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 usuario = dataSnapshot.child("usuario").getValue(String.class);
-                Log.d("usuario", usuario);
+                Toast toast = Toast.makeText(getView().getContext(), "Usuario - "+ usuario,Toast.LENGTH_LONG);
+                toast.show();
+                Log.d("USUARIOS", usuario);
 
                 //seguindo.clear();
 //                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
