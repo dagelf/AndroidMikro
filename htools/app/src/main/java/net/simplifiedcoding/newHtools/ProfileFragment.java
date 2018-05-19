@@ -64,6 +64,7 @@ public class ProfileFragment extends Fragment {
                 values
         );
         listView.setAdapter(listViewAdapter);
+        mAuth = FirebaseAuth.getInstance();
 
         FirebaseUser currentUser = mAuth.getCurrentUser();
         //new
