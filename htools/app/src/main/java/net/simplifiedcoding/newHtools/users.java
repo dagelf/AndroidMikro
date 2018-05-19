@@ -119,7 +119,7 @@ public class users extends Fragment {
                             FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
-                            DatabaseReference userRef = database.getReference("users");
+                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
 
                             Map<String, Object> userInfos = new HashMap<>();
                             userInfos.put("usuario",nome);
