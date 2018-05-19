@@ -84,7 +84,8 @@ public class users extends Fragment {
 
         final String usuario = editEmail.getText().toString().trim();
         String senha = editSenha.getText().toString().trim();
-        String nome = editNome.getText().toString().trim();
+        final String nome = editNome.getText().toString().trim();
+
 
         String data = editData.getText().toString().trim();
 
@@ -114,15 +115,17 @@ public class users extends Fragment {
                             Toast toast = Toast.makeText(getView().getContext(), "Usuario Cadastrado com Sucesso ! - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
                             toast.show();
 
-//                           FirebaseUser user = mAuth.getCurrentUser();
-//                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
-//
-//                            Map<String, Object> userInfos = new HashMap<>();
-//                            userInfos.put("usuario",usuario);
-//                            userInfos.put("email",usuario);
-//                            userRef.setValue(userInfos);
-//                            //finish();
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+
+
+                            DatabaseReference userRef = database.getReference("users");
+
+                            Map<String, Object> userInfos = new HashMap<>();
+                            userInfos.put("usuario",nome);
+                            userInfos.put("email",usuario);
+                            userRef.setValue(userInfos);
+                            getActivity().finish();
 
                         }else{
                             try{
