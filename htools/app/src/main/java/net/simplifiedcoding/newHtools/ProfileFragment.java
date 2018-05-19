@@ -11,11 +11,30 @@ import android.widget.ListView;
 
 import net.simplifiedcoding.bottomnavigationexample.R;
 
-/**
- * Created by Belal on 1/23/2018.
- */
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+
 
 public class ProfileFragment extends Fragment {
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+
+    private String uid;
+    private String usuario;
+
+
+    private ArrayList<String> seguindo;
+
+    private ChildEventListener tweetEventListener;
 
     public ProfileFragment(){
 
@@ -44,6 +63,11 @@ public class ProfileFragment extends Fragment {
                 values
         );
         listView.setAdapter(listViewAdapter);
+
+
+        //new
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
 
 
         return vProfile;
