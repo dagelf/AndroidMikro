@@ -70,15 +70,13 @@ public class ProfileFragment extends Fragment {
 
         //new
         mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
         FirebaseUser user = mAuth.getCurrentUser();
-        if(user == null) {
+        //if(user != null) {
             //getActivity().finish();
             getUserInfo();
-        }
+        ///}
 
-
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
 
 
     ////////////////
