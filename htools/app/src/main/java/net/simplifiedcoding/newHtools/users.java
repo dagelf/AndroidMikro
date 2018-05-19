@@ -70,8 +70,7 @@ public class users extends Fragment {
             @Override
             public void onClick(View v) {
 //                Log.d(LOG_TAG, "ANTES TOAST");
-                Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
-                toast.show();
+
                 mt = new MyTask();
                 mt.execute();
                   salvar();
@@ -112,7 +111,10 @@ public class users extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
-//                            FirebaseUser user = mAuth.getCurrentUser();
+                            Toast toast = Toast.makeText(getView().getContext(), "Usuario Cadastrado com Sucesso ! - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
+                            toast.show();
+
+//                           FirebaseUser user = mAuth.getCurrentUser();
 //                            FirebaseDatabase database = FirebaseDatabase.getInstance();
 //                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
 //
