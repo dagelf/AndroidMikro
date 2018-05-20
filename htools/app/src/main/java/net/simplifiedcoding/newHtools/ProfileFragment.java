@@ -36,6 +36,7 @@ public class ProfileFragment extends Fragment {
 
     private ArrayList<String> seguindo;
 
+
     private ChildEventListener tweetEventListener;
 
     public ProfileFragment(){
@@ -51,6 +52,11 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+
+
+        seguindo = new ArrayList<>();
         Log.d("Ciclo", "Fragment: Metodo onCreate() chamado");
     }
     @Override
@@ -65,8 +71,8 @@ public class ProfileFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         if(user == null) getActivity().finish();
 
-        //getUserInfo();
-        Log.d("Ciclo", "Fragment: Metodo onStart() chamado" + user);
+        getUserInfo();
+        Log.d("Ciclo", "Fragment: Metodo onStart() chamado" + user.getUid());
     }
     @Override
     public void onResume() {
@@ -115,30 +121,28 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View vProfile = inflater.inflate(R.layout.fragment_profile, container, false);
             //inflater.inflate(R.layout.fragment_profile, null);
-        ListView listView = (ListView) vProfile.findViewById(R.id.listView);
-        String[] values = new String[] { "Joao Manuel",
-                "Maria da Silca",
-                "Chica da Silva",
-                "Leao Lobo",
-                "Mr. Android",
-                "Roberto Marinho",
-                "Marcinho da DP.",
-                "Sr. Gulp"
-        };
-
-        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-                getActivity(),
-                android.R.layout.simple_list_item_1,
-                values
-        );
-        listView.setAdapter(listViewAdapter);
+//        ListView listView = (ListView) vProfile.findViewById(R.id.listView);
+//        String[] values = new String[] { "Joao Manuel",
+//                "Maria da Silca",
+//                "Chica da Silva",
+//                "Leao Lobo",
+//                "Mr. Android",
+//                "Roberto Marinho",
+//                "Marcinho da DP.",
+//                "Sr. Gulp"
+//        };
+//
+//        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
+//                getActivity(),
+//                android.R.layout.simple_list_item_1,
+//                values
+//        );
+//        listView.setAdapter(listViewAdapter);
 
 
 
         //new
-        mAuth = FirebaseAuth.getInstance();
-        database = FirebaseDatabase.getInstance();
-        FirebaseUser user = mAuth.getCurrentUser();
+        //FirebaseUser user = mAuth.getCurrentUser();
         //if(user != null) {
             //getActivity().finish();
            // getUserInfo();
@@ -149,11 +153,6 @@ public class ProfileFragment extends Fragment {
     ////////////////
         return vProfile;
     }
-//
-//    @Override
-//    protected void OnStart(){
-//        super.OnStart();
-//    }
 
 
 
@@ -167,14 +166,17 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 usuario = dataSnapshot.child("usuario").getValue(String.class);
-                Toast toast = Toast.makeText(getView().getContext(), "Usuario - "+ usuario,Toast.LENGTH_LONG);
-                toast.show();
-                Log.d("USUARIOS", usuario);
+                seguindo.clear();
+                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
+                    seguindo.add(s.getValue(String.class));
+                }
+//                System.out.println(usuario);
 
-                //seguindo.clear();
-//                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
-//                    seguindo.add(s.getValue(String.class));
-//                }
+//                Toast toast = Toast.makeText(getView().getContext(), "Usuario - "+ usuario,Toast.LENGTH_LONG);
+//                toast.show();
+                Log.d("usuario", usuario);
+                Log.d("lista", seguindo.toString());
+
 
 //                TextView headerUsuario = findViewById(R.id.headerUsuario);
 //                headerUsuario.setText(usuario);
