@@ -65,8 +65,8 @@ public class users extends Fragment {
         editSenha = vUser.findViewById(R.id.cadSenha);
         editData = vUser.findViewById(R.id.cadData);
         btnSalvar = (Button) vUser.findViewById(R.id.btnSalvar);
-        mt = new MyTask();
-        mt.execute();
+//        mt = new MyTask();
+//        mt.execute();
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +200,7 @@ public class users extends Fragment {
                     System.out.println(usuario);
                     System.out.println(senha);
 
-                    result = con.execute("/ip/hotspot/user/add name=joao password=123456");
+                    result = con.execute("/ip/hotspot/user/add name="+usuario+" password="+senha);
                     //result = con.execute("/ip/arp/print");
                     System.out.println(result);
                     for (Map<String, String> res : result) {
