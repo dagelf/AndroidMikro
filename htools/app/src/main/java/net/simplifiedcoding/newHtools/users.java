@@ -65,6 +65,8 @@ public class users extends Fragment {
         editSenha = vUser.findViewById(R.id.cadSenha);
         editData = vUser.findViewById(R.id.cadData);
         btnSalvar = (Button) vUser.findViewById(R.id.btnSalvar);
+        mt = new MyTask();
+        mt.execute();
 
         btnSalvar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,7 +75,9 @@ public class users extends Fragment {
 
                 mt = new MyTask();
                 mt.execute();
-                  salvar();
+
+
+                  //salvar();
 
             }
         });
@@ -112,6 +116,8 @@ public class users extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
+                            mt = new MyTask();
+                            mt.execute();
                             Toast toast = Toast.makeText(getView().getContext(), "Usuario Cadastrado com Sucesso ! - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
                             toast.show();
 
@@ -172,6 +178,7 @@ public class users extends Fragment {
             try {
 
                 List<Map<String, String>> result = null;
+                List<Map<String, String>> result1 = null;
 
                 try {
                     Log.d(LOG_TAG, "start");
@@ -186,9 +193,22 @@ public class users extends Fragment {
                         //tvResult.setText("OK!");
                         Log.d(LOG_TAG, "isConnected");
                     }
-                    result = con.execute("/interface/print");
+                    final String usuario = editEmail.getText().toString().trim();
+                    final String senha = editSenha.getText().toString().trim();
+                    final String nome = editNome.getText().toString().trim();
+                    System.out.println("VAI");
+                    System.out.println(nome);
+                    System.out.println(usuario);
+                    System.out.println(senha);
+
+                    result = con.execute("/ip/hotspot/user/add/name="+usuario +"/password="+senha+ "/profile=default");
+                    System.out.println(result);
+                    result1 = con.execute("/ip/arp/print");
                     for (Map<String, String> res : result) {
                         Log.d(LOG_TAG, res.toString());
+                    }
+                    for (Map<String, String> res1 : result1) {
+                        Log.d(LOG_TAG, res1.toString());
                     }
                     con.close();
                 } catch (Exception e) {
