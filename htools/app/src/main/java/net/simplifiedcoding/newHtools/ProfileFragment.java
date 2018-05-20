@@ -114,6 +114,17 @@ public class ProfileFragment extends Fragment {
         super.onDetach();
         Log.d("Ciclo", "Fragment: Metodo onDetach() chamado");
     }
+    public static class Post {
+
+        public String uid;
+        public String usuario;
+        public String email;
+
+        public Post( String uid, String usuario, String email) {
+            // ...
+        }
+
+    }
 
 
     @Nullable
@@ -161,30 +172,26 @@ public class ProfileFragment extends Fragment {
     private void getUserInfo(){
         uid = mAuth.getCurrentUser().getUid();
 
-        DatabaseReference userRef = database.getReference("users/" + uid);
-        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+        DatabaseReference userRef = database.getReference("users/");
+        userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                usuario = dataSnapshot.child("usuario").getValue(String.class);
-                seguindo.clear();
-                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
-                    seguindo.add(s.getValue(String.class));
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+
+
+                    ///Post p = objSnapshot.getValue(Post.class);
+
+                    //usuario =  objSnapshot.getValue(String.class);
+                    //usuario = dataSnapshot.child("usuario").getValue(String.class);
+                    System.out.println(objSnapshot.getValue().toString());
+                   // seguindo.add(p.toString());
+
                 }
-//                System.out.println(usuario);
-
-//                Toast toast = Toast.makeText(getView().getContext(), "Usuario - "+ usuario,Toast.LENGTH_LONG);
-//                toast.show();
-                Log.d("usuario", usuario);
-                Log.d("lista", seguindo.toString());
+                ///System.out.println(seguindo.toString());
 
 
-//                TextView headerUsuario = findViewById(R.id.headerUsuario);
-//                headerUsuario.setText(usuario);
-//
-//                TextView headerSeguindo = findViewById(R.id.headerSeguindo);
-//                headerSeguindo.setText("Seguindo: " + seguindo.size());
-//
-//                setTweetListener();
+
+
             }
 
             @Override
@@ -192,6 +199,36 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+//        userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                usuario = dataSnapshot.child("usuario").getValue(String.class);
+//                seguindo.clear();
+//                for(DataSnapshot s:dataSnapshot.child("seguindo").getChildren()){
+//                    seguindo.add(s.getValue(String.class));
+//                }
+////                System.out.println(usuario);
+//
+////                Toast toast = Toast.makeText(getView().getContext(), "Usuario - "+ usuario,Toast.LENGTH_LONG);
+////                toast.show();
+//                Log.d("usuario", usuario);
+//                Log.d("lista", seguindo.toString());
+//
+//
+////                TextView headerUsuario = findViewById(R.id.headerUsuario);
+////                headerUsuario.setText(usuario);
+////
+////                TextView headerSeguindo = findViewById(R.id.headerSeguindo);
+////                headerSeguindo.setText("Seguindo: " + seguindo.size());
+////
+////                setTweetListener();
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//
+//            }
+//        });
 
 
     }
