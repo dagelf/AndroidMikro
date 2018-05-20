@@ -42,6 +42,73 @@ public class ProfileFragment extends Fragment {
 
     }
 
+//    @Override
+//    public void onAttach(Activity. activity) {
+//        super.onAttach(activity);
+//        Log.d("Ciclo", "Fragment: Metodo onAttach() chamado");
+//    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d("Ciclo", "Fragment: Metodo onCreate() chamado");
+    }
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d("Ciclo", "Fragment: Metodo onActivityCreated() chamado");
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        FirebaseUser user = mAuth.getCurrentUser();
+        if(user == null) getActivity().finish();
+
+        //getUserInfo();
+        Log.d("Ciclo", "Fragment: Metodo onStart() chamado" + user);
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.d("Ciclo", "Fragment: Metodo onResume() chamado");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        Log.d("Ciclo", "Fragment: Metodo onPause() chamado");
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        Log.d("Ciclo", "Fragment: Metodo onStop() chamado");
+    }
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        Log.d("Ciclo", "Fragment: Metodo onSavedInstanceState() chamado");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        Log.d("Ciclo", "Fragment: Metodo onDestroyView() chamado");
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d("Ciclo", "Fragment: Metodo onDestroy() chamado");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        Log.d("Ciclo", "Fragment: Metodo onDetach() chamado");
+    }
+
 
     @Nullable
     @Override
@@ -74,7 +141,7 @@ public class ProfileFragment extends Fragment {
         FirebaseUser user = mAuth.getCurrentUser();
         //if(user != null) {
             //getActivity().finish();
-            getUserInfo();
+           // getUserInfo();
         ///}
 
 
@@ -82,6 +149,11 @@ public class ProfileFragment extends Fragment {
     ////////////////
         return vProfile;
     }
+//
+//    @Override
+//    protected void OnStart(){
+//        super.OnStart();
+//    }
 
 
 
