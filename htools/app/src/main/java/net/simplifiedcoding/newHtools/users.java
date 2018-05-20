@@ -178,7 +178,6 @@ public class users extends Fragment {
             try {
 
                 List<Map<String, String>> result = null;
-                List<Map<String, String>> result1 = null;
 
                 try {
                     Log.d(LOG_TAG, "start");
@@ -201,14 +200,11 @@ public class users extends Fragment {
                     System.out.println(usuario);
                     System.out.println(senha);
 
-                    result = con.execute("/ip/hotspot/user/add/name="+usuario +"/password="+senha+ "/profile=default");
+                    result = con.execute("/ip/hotspot/user/add name=joao password=123456");
+                    //result = con.execute("/ip/arp/print");
                     System.out.println(result);
-                    result1 = con.execute("/ip/arp/print");
                     for (Map<String, String> res : result) {
                         Log.d(LOG_TAG, res.toString());
-                    }
-                    for (Map<String, String> res1 : result1) {
-                        Log.d(LOG_TAG, res1.toString());
                     }
                     con.close();
                 } catch (Exception e) {
