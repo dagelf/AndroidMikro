@@ -206,6 +206,9 @@ public class ProfileFragment extends Fragment {
                     s.setEmail(mail);
                     listUsuario.add(s);
                     seguindo.add(user);
+                    seguindo.add(user);
+                    seguindo.add(user);
+
                      //Usuarios s = objSnapshot.getValue(Usuarios.class);
 
 //                    System.out.println(s.toString());
