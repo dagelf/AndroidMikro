@@ -24,6 +24,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileFragment extends Fragment {
@@ -33,6 +34,8 @@ public class ProfileFragment extends Fragment {
     private String uid;
     private String usuario;
 
+    private List <Usuarios> listUsuario = new ArrayList<>();
+    private ArrayAdapter<Usuarios> arrayAdapterUsuario;
 
     private ArrayList<String> seguindo;
 
@@ -143,12 +146,22 @@ public class ProfileFragment extends Fragment {
 
         public String email;
 
+        public String uid;
 
-        public Usuarios(String usuario, String email) {
-            this.usuario = usuario;
-            this.email = email;
+        public String getUid() {
+            return uid;
         }
 
+        public void setUid(String uid) {
+            this.uid = uid;
+        }
+
+
+
+        @Override
+        public String toString() {
+            return usuario;
+        }
     }
 
 
@@ -184,10 +197,18 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    String user;
+                    String mail;
+                    Usuarios s = new Usuarios();
+                    user = objSnapshot.child("usuario").getValue(String.class);
+                    mail = objSnapshot.child("email").getValue(String.class);
+                    s.setUsuario(user);
+                    s.setEmail(mail);
+                    listUsuario.add(s);
+                    seguindo.add(user);
+                     //Usuarios s = objSnapshot.getValue(Usuarios.class);
 
-
-///                    Usuarios s = objSnapshot.getValue(Usuarios.class);
-                    /// System.out.println(s.toString());
+//                    System.out.println(s.toString());
 //                    System.out.println(p.email);
 //                    System.out.println(p.usuario);
 
@@ -196,10 +217,11 @@ public class ProfileFragment extends Fragment {
                     // System.out.println(objSnapshot.getValue().toString());
 
                     //seguindo.add(s.);
-                    seguindo.add(objSnapshot.getValue().toString());
+                    //seguindo.add(objSnapshot.getValue().toString());
 
                 }
-                System.out.println(seguindo);
+
+                System.out.println(listUsuario);
                 ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
                 android.R.layout.simple_list_item_1, seguindo);
