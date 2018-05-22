@@ -7,11 +7,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import net.simplifiedcoding.bottomnavigationexample.R;
+import net.simplifiedcoding.newHtools.Adapter.AdapterCursosPersonalizado;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -227,8 +229,13 @@ public class ProfileFragment extends Fragment {
                 System.out.println(listUsuario);
                 ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
                 getActivity(),
-                android.R.layout.simple_list_item_1, seguindo);
+                android.R.layout.simple_list_item_checked, seguindo);
+                listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
                 listView.setAdapter(listViewAdapter);
+
+
+
+
 
             }
 
