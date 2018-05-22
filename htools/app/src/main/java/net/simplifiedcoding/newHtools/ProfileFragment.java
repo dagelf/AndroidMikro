@@ -35,8 +35,7 @@ public class ProfileFragment extends Fragment {
     private FirebaseAuth mAuth;
     private FirebaseDatabase database;
 
-    private String uid;
-    private String usuario;
+
 
     private List <Usuarios> listUsuario = new ArrayList<>();
     private ArrayAdapter<Usuarios> arrayAdapterUsuario;
