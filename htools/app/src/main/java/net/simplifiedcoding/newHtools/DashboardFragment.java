@@ -33,7 +33,7 @@ public class DashboardFragment extends Fragment {
 //        customAdapter = new CustomAdapter(getActivity(), pessoas);
 //        listView.setAdapter((ListAdapter) customAdapter);
         FirebaseClient f = new FirebaseClient(getActivity(),listView);
-        f.refreshdata();
+        f.getUsers();
         return vDash;
     }
 }

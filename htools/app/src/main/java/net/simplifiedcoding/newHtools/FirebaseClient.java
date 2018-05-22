@@ -1,11 +1,22 @@
 package net.simplifiedcoding.newHtools;
 
 import android.content.Context;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -20,14 +31,22 @@ public class FirebaseClient {
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
     private FirebaseAuth mAuth;
-    private FirebaseDatabase database;
+
+    DatabaseReference userRef ;
+//    FirebaseUser user = mAuth.getCurrentUser();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     public  FirebaseClient(Context c, ListView listView)
     {
         this.c= c;
         this.listView= listView;
-         FirebaseAuth mAuth;
-         FirebaseDatabase database;
+//         FirebaseAuth mAuth;
+//         //FirebaseDatabase database;
+//         mAuth = FirebaseAuth.getInstance();
+////         database = FirebaseDatabase.getInstance();
+//         DatabaseReference userRef;
+//         FirebaseDatabase database = FirebaseDatabase.getInstance();
+
 
 
     }
@@ -56,5 +75,33 @@ public class FirebaseClient {
 
         customAdapter = new CustomAdapter(c, pessoas);
         listView.setAdapter((ListAdapter) customAdapter);
+    }
+
+    public void getUsers(){
+        userRef = database.getReference("users/");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    String user;
+                    String mail;
+                    Pessoa p = new Pessoa();
+
+                    user = objSnapshot.child("usuario").getValue(String.class);
+                    mail = objSnapshot.child("email").getValue(String.class);
+                    p.setNome(user);
+                    p.setEmail(mail);
+                    pessoas.add(p);
+                }
+
+                customAdapter = new CustomAdapter(c, pessoas);
+                listView.setAdapter((ListAdapter) customAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
     }
 }
