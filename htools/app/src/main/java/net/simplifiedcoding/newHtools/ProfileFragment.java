@@ -50,24 +50,13 @@ public class ProfileFragment extends Fragment {
 
     }
 
-//    @Override
-//    public void onAttach(Activity. activity) {
-//        super.onAttach(activity);
-//        Log.d("Ciclo", "Fragment: Metodo onAttach() chamado");
-//    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        //        ListView listView = (ListView) vProfile.findViewById(R.id.listView);
-
-
         mAuth = FirebaseAuth.getInstance();
         database = FirebaseDatabase.getInstance();
-
-
-
         Log.d("Ciclo", "Fragment: Metodo onCreate() chamado");
     }
     @Override
@@ -177,24 +166,8 @@ public class ProfileFragment extends Fragment {
         seguindo = new ArrayList<>();
         System.out.println("print se" + seguindo.toString());
         System.out.println("Quantidade " + seguindo.size());
-            //inflater.inflate(R.layout.fragment_profile, null);
+
         final ListView listView = (ListView) vProfile.findViewById(R.id.listView);
-//        String[] values = new String[] { "Joao Manuel",
-//                "Maria da Silca",
-//                "Chica da Silva",
-//                "Leao Lobo",
-//                "Mr. Android",
-//                "Roberto Marinho",
-//                "Marcinho da DP.",
-//                "Sr. Gulp"
-//        };
-//
-//        ArrayAdapter<String> listViewAdapter = new ArrayAdapter<String>(
-//                getActivity(),
-//                android.R.layout.simple_list_item_1,
-//                values
-//        );
-//        listView.setAdapter(listViewAdapter);
 
         DatabaseReference userRef = database.getReference("users/");
         userRef.addValueEventListener(new ValueEventListener() {
@@ -212,20 +185,6 @@ public class ProfileFragment extends Fragment {
                     seguindo.add(user);
                     seguindo.add(user);
                     seguindo.add(user);
-
-                     //Usuarios s = objSnapshot.getValue(Usuarios.class);
-
-//                    System.out.println(s.toString());
-//                    System.out.println(p.email);
-//                    System.out.println(p.usuario);
-
-                    //usuario =  objSnapshot.getValue(String.class);
-                    //usuario = dataSnapshot.child("usuario").getValue(String.class);
-                    // System.out.println(objSnapshot.getValue().toString());
-
-                    //seguindo.add(s.);
-                    //seguindo.add(objSnapshot.getValue().toString());
-
                 }
 
                 System.out.println(listUsuario);
@@ -259,16 +218,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        //new
-        //FirebaseUser user = mAuth.getCurrentUser();
-        //if(user != null) {
-            //getActivity().finish();
-           // getUserInfo();
-        ///}
-
-
-
-    ////////////////
         return vProfile;
     }
 
