@@ -69,6 +69,7 @@ public class DashboardFragment extends Fragment {
         customAdapter = new CustomAdapter(getActivity(), pessoas);
         listView.setAdapter((ListAdapter) customAdapter);
 
+
         return vDash;
     }
 }
