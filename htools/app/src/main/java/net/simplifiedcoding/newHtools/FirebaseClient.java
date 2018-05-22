@@ -39,17 +39,7 @@ public class FirebaseClient {
     public  FirebaseClient(Context c, ListView listView)
     {
         this.c= c;
-        this.listView= listView;
-//         FirebaseAuth mAuth;
-//         //FirebaseDatabase database;
-//         mAuth = FirebaseAuth.getInstance();
-////         database = FirebaseDatabase.getInstance();
-//         DatabaseReference userRef;
-//         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
-
-    }
+        this.listView= listView;    }
 
     public  void refreshdata()
     {
@@ -82,20 +72,8 @@ public class FirebaseClient {
         userRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
-                    String user;
-                    String mail;
-                    Pessoa p = new Pessoa();
+                getupdates(dataSnapshot);
 
-                    user = objSnapshot.child("usuario").getValue(String.class);
-                    mail = objSnapshot.child("email").getValue(String.class);
-                    p.setNome(user);
-                    p.setEmail(mail);
-                    pessoas.add(p);
-                }
-
-                customAdapter = new CustomAdapter(c, pessoas);
-                listView.setAdapter((ListAdapter) customAdapter);
             }
 
             @Override
@@ -103,5 +81,27 @@ public class FirebaseClient {
 
             }
         });
+    }
+    public void getupdates(DataSnapshot dataSnapshot){
+        pessoas.clear();
+        for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+            String user;
+            String mail;
+            Pessoa p = new Pessoa();
+
+            user = objSnapshot.child("usuario").getValue(String.class);
+            mail = objSnapshot.child("email").getValue(String.class);
+            p.setNome(user);
+            p.setEmail(mail);
+            pessoas.add(p);
+        }
+        if(pessoas.size()>0)
+        {
+            customAdapter = new CustomAdapter(c, pessoas);
+            listView.setAdapter((ListAdapter) customAdapter);
+        }else
+        {
+            Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
+        }
     }
 }
