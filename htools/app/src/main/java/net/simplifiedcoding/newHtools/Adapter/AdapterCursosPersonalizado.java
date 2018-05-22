@@ -49,16 +49,16 @@ public class AdapterCursosPersonalizado extends BaseAdapter {
 
         Pessoa pessoa = pessoas.get(position);
 
-        TextView nome = (TextView)
-                view.findViewById(R.id.lista_curso_personalizada_nome);
-        TextView descricao = (TextView)
-                view.findViewById(R.id.lista_curso_personalizada_descricao);
-        ImageView imagem = (ImageView)
-                view.findViewById(R.id.lista_curso_personalizada_imagem);
-
-        nome.setText(pessoa.getNome());
-        descricao.setText(pessoa.getEmail());
-        imagem.setImageResource(R.drawable.ic_people);
+//        TextView nome = (TextView)
+//                view.findViewById(R.id.lista_curso_personalizada_nome);
+//        TextView descricao = (TextView)
+//                view.findViewById(R.id.lista_curso_personalizada_descricao);
+//        ImageView imagem = (ImageView)
+//                view.findViewById(R.id.lista_curso_personalizada_imagem);
+//
+//        nome.setText(pessoa.getNome());
+//        descricao.setText(pessoa.getEmail());
+//        imagem.setImageResource(R.drawable.ic_people);
 
         return view;
     }

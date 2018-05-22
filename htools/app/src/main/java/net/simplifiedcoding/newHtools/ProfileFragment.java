@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CheckedTextView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class ProfileFragment extends Fragment {
     private ArrayAdapter<Usuarios> arrayAdapterUsuario;
 
     private ArrayList<String> seguindo;
+    private ArrayList<String> bloqueados;
 
 
     private ChildEventListener tweetEventListener;
@@ -232,6 +235,18 @@ public class ProfileFragment extends Fragment {
                 android.R.layout.simple_list_item_checked, seguindo);
                 listView.setChoiceMode(AbsListView.CHOICE_MODE_MULTIPLE);
                 listView.setAdapter(listViewAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
+                        CheckedTextView checkedTextView = (CheckedTextView) view;
+                        if(checkedTextView.isChecked()){
+                            //seguindo.add(usuario.get(i));
+                            Toast toast = Toast.makeText(getView().getContext(), "Click" ,Toast.LENGTH_LONG);
+                            toast.show();
+
+                        }
+                    }
+                });
 
 
 
