@@ -1,6 +1,7 @@
 package net.simplifiedcoding.newHtools;
 
 import android.content.Context;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,7 +30,31 @@ public class FirebaseClient {
          FirebaseDatabase database;
 
 
-        //Firebase.setAndroidContext(c);
+    }
 
+    public  void refreshdata()
+    {
+        Pessoa p = new Pessoa();
+        Pessoa p1 = new Pessoa();
+        p.setEmail("joao@gmail.com");
+        p.setNome("Joao Araujo de Sousa");
+        p1.setEmail("rosa@gmail.com");
+        p1.setNome("Rosa Araujo de Sousa");
+        pessoas.add(p);
+        pessoas.add(p1);
+        pessoas.add(p1);
+        pessoas.add(p);
+        pessoas.add(p1);
+        pessoas.add(p1);
+        pessoas.add(p);
+        pessoas.add(p1);
+        pessoas.add(p);
+        pessoas.add(p1);
+        pessoas.add(p);
+        pessoas.add(p1);
+        pessoas.add(p1);
+
+        customAdapter = new CustomAdapter(c, pessoas);
+        listView.setAdapter((ListAdapter) customAdapter);
     }
 }
