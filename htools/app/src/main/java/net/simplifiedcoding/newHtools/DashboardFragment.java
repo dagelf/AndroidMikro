@@ -21,10 +21,6 @@ import net.simplifiedcoding.bottomnavigationexample.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by Belal on 1/23/2018.
- */
-
 public class DashboardFragment extends Fragment {
     //ListView listView;
 

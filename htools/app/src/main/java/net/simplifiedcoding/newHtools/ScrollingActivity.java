@@ -90,7 +90,6 @@ public class ScrollingActivity extends AppCompatActivity {
         });
     }
 
-
     private void salvar(){
 
         final String nome = editNome.getText().toString().trim();
@@ -101,10 +100,6 @@ public class ScrollingActivity extends AppCompatActivity {
         final String ativocheck = ativo.toString();
         final String download = editDown.getText().toString().trim();
         final String upload = editUp.getText().toString().trim();
-
-
-
-
         if(nome.equals("")){
             editNome.setError("Preencha este Campo !");
             editNome.requestFocus();
@@ -138,9 +133,6 @@ public class ScrollingActivity extends AppCompatActivity {
         finish();
         Toast toast = Toast.makeText(this,"Usuario Cadastrado !",Toast.LENGTH_LONG);
         toast.show();
-
-
-
 
     }
 }

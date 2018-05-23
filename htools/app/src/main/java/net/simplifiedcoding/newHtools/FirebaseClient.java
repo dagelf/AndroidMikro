@@ -80,6 +80,7 @@ public class FirebaseClient {
             mail = objSnapshot.child("email").getValue(String.class);
             p.setNome(user);
             p.setEmail(mail);
+            
             pessoas.add(p);
 
         }
