@@ -102,50 +102,26 @@ public class ScrollingActivity extends AppCompatActivity {
             editSenha.requestFocus();
             return;
         }
-
-        mAuth.createUserWithEmailAndPassword(usuario, senha)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if(task.isSuccessful()){
-//                            mt = new users.MyTask();
-//                            mt.execute();
-//                            Toast toast = Toast.makeText(getView().getContext(), "Usuario Cadastrado com Sucesso ! - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
-//                            toast.show();
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
 
 
-                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
+        DatabaseReference userRef = database.getReference("users/" + user.getUid());
 
-                            Map<String, Object> userInfos = new HashMap<>();
-                            userInfos.put("usuario",nome);
-                            userInfos.put("email",usuario);
-                            userRef.setValue(userInfos);
-                            finish();
+        Map<String, Object> userInfos = new HashMap<>();
+        userInfos.put("usuario",nome);
+        userInfos.put("email",usuario);
+        userInfos.put("senha",senha);
+        userInfos.put("data",data);
+//        userInfos.put("email",usuario);
+//        userInfos.put("email",usuario);
+//        userInfos.put("email",usuario);
 
-                        }else{
-                            try{
-                                throw  task.getException();
+        userRef.setValue(userInfos);
+        finish();
 
-                            }catch (FirebaseAuthWeakPasswordException e){
-                                editSenha.setError("Senha Fraca");
-                                editSenha.requestFocus();
-                            }catch (FirebaseAuthInvalidCredentialsException e){
-                                editEmail.setError("Email invalido !");
-                                editEmail.requestFocus();
-                            }catch (FirebaseAuthUserCollisionException e){
-                                editEmail.setError("Email ja existe !");
-                                editEmail.requestFocus();
-                            }catch (Exception e){
-                                Log.e("Cadastro", e.getMessage());
-                            }
-                        }
-                    }
 
-                });
+
 
     }
 }

@@ -102,4 +102,8 @@ public class FirebaseClient {
     public int usersCount(){
         return count;
     }
+
+    public  void salvarUser(){
+
+    }
 }
