@@ -64,7 +64,7 @@ public class users extends Fragment {
         editNome = vUser.findViewById(R.id.cadNome);
         editSenha = vUser.findViewById(R.id.cadSenha);
         editData = vUser.findViewById(R.id.cadData);
-        btnSalvar = (Button) vUser.findViewById(R.id.btnSalvar);
+        ///btnSalvar = (Button) vUser.findViewById(R.id.btnSalvar);
 //        mt = new MyTask();
 //        mt.execute();
 

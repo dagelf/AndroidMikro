@@ -33,7 +33,7 @@
             android:layout_marginTop="8dp"
             android:ems="10"
             android:hint="Upload"
-            android:inputType="number"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toTopOf="@+id/checkAtivo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/radioGroup2" />
