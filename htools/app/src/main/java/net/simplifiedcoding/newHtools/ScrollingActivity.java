@@ -53,6 +53,7 @@ public class ScrollingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scrolling);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        mAuth = FirebaseAuth.getInstance();
         editEmail = findViewById(R.id.cadEmail);
         editNome = findViewById(R.id.cadNome);
         editSenha = findViewById(R.id.cadSenha);
@@ -85,7 +86,11 @@ public class ScrollingActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this,nome+usuario+senha+data,Toast.LENGTH_LONG);
         toast.show();
 
-
+        if(nome.equals("")){
+            editNome.setError("Preencha este Campo !");
+            editNome.requestFocus();
+            return;
+        }
 
         if(usuario.equals("")){
             editEmail.setError("Preencha este Campo !");
@@ -97,12 +102,6 @@ public class ScrollingActivity extends AppCompatActivity {
             editSenha.requestFocus();
             return;
         }
-        if(nome.equals("")){
-            editSenha.setError("Preencha este Campo !");
-            editSenha.requestFocus();
-            return;
-        }
-
 
         mAuth.createUserWithEmailAndPassword(usuario, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
