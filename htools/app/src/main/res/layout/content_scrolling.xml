@@ -64,23 +64,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
-        <Button
-            android:id="@+id/btnSalvar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@+id/cadSenha"
-            android:layout_alignStart="@+id/cadSenha"
-            android:layout_below="@+id/cadSenha"
-            android:layout_marginBottom="16dp"
-            android:layout_marginTop="8dp"
-            android:onClick="salvar"
-            android:text="Salvar"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cadData" />
-
         <android.support.constraint.Guideline
             android:id="@+id/guideline"
             android:layout_width="wrap_content"
@@ -111,33 +94,6 @@
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="20dp" />
 
-        <RadioButton
-            android:id="@+id/radioButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="28dp"
-            android:text="Masculino"
-            app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cadData"
-            app:layout_constraintVertical_bias="0.181" />
-
-        <RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="8dp"
-            android:text="Femino"
-            app:layout_constraintBottom_toTopOf="@+id/btnSalvar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.547"
-            app:layout_constraintStart_toEndOf="@+id/radioButton"
-            app:layout_constraintTop_toBottomOf="@+id/cadData"
-            app:layout_constraintVertical_bias="0.181" />
-
         <EditText
             android:id="@+id/cadData"
             android:layout_width="0dp"
@@ -150,6 +106,71 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cadSenha" />
+
+        <EditText
+            android:id="@+id/cadUp"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Upload"
+            android:inputType="textPersonName"
+            app:layout_constraintTop_toBottomOf="@+id/cadData"
+            tools:layout_editor_absoluteX="196dp" />
+
+        <EditText
+            android:id="@+id/cadDown"
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:ems="10"
+            android:hint="Download"
+            android:inputType="textPersonName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cadData" />
+
+        <CheckBox
+            android:id="@+id/checkAtivo"
+            style="@style/Widget.AppCompat.CompoundButton.CheckBox"
+            android:layout_width="102dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:text="Ativo"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.459"
+            app:layout_constraintStart_toStartOf="@+id/guideline2" />
+
+        <RadioGroup
+            android:id="@+id/radioGroup2"
+            android:layout_width="332dp"
+            android:layout_height="69dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/checkAtivo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cadData">
+
+            <RadioButton
+                android:id="@+id/radioMas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Masculino" />
+
+            <RadioButton
+                android:id="@+id/radioFem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Femino" />
+        </RadioGroup>
 
     </android.support.constraint.ConstraintLayout>
 </android.support.v4.widget.NestedScrollView>

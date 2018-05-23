@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 break;
 
             case R.id.navigation_profile:
-                fragment = new users();
+                fragment = new UsuariosFragment();
                 break;
         }
 
