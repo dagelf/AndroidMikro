@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -38,11 +39,14 @@ public class ScrollingActivity extends AppCompatActivity {
     private EditText editEmail;
     private EditText editSenha;
     private EditText editNome;
-    private RadioGroup editSexo;
+    private RadioButton Masc;
+    private RadioButton Fem;
     private EditText editData;
     private EditText editDown;
     private EditText editUp;
-    private CheckBox ativo;
+    private CheckBox checkAtivo;
+    String sexo;
+    String ativo = "N";
 
     final  String LOG_TAG = "mLog";
 
@@ -58,19 +62,30 @@ public class ScrollingActivity extends AppCompatActivity {
         editNome = findViewById(R.id.cadNome);
         editSenha = findViewById(R.id.cadSenha);
         editData = findViewById(R.id.cadData);
-        editSexo = findViewById(R.id.radioGroup2);
+        Masc = (RadioButton) findViewById(R.id.radioMas);
+        Fem = (RadioButton) findViewById(R.id.radioFem);
         editDown = findViewById(R.id.cadDown);
         editUp = findViewById(R.id.cadUp);
-        ativo = findViewById(R.id.checkAtivo);
+        checkAtivo = findViewById(R.id.checkAtivo);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+
+                if (Masc.isChecked()) {
+                    sexo = "M";
+
+                }if (Fem.isChecked()) {
+                    sexo = "F";
+                }
+                if (checkAtivo.isChecked()){
+                    ativo="S";
+                }
+
                 salvar();
+
             }
         });
     }
@@ -82,9 +97,13 @@ public class ScrollingActivity extends AppCompatActivity {
         final String usuario = editEmail.getText().toString().trim();
         final String senha = editSenha.getText().toString().trim();
         final String data = editData.getText().toString();
+        final String sexocheck = sexo.toString();
+        final String ativocheck = ativo.toString();
+        final String download = editDown.getText().toString().trim();
+        final String upload = editUp.getText().toString().trim();
 
-        Toast toast = Toast.makeText(this,nome+usuario+senha+data,Toast.LENGTH_LONG);
-        toast.show();
+
+
 
         if(nome.equals("")){
             editNome.setError("Preencha este Campo !");
@@ -104,8 +123,6 @@ public class ScrollingActivity extends AppCompatActivity {
         }
         FirebaseUser user = mAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
         DatabaseReference userRef = database.getReference("users/" + user.getUid());
 
         Map<String, Object> userInfos = new HashMap<>();
@@ -113,12 +130,14 @@ public class ScrollingActivity extends AppCompatActivity {
         userInfos.put("email",usuario);
         userInfos.put("senha",senha);
         userInfos.put("data",data);
-//        userInfos.put("email",usuario);
-//        userInfos.put("email",usuario);
-//        userInfos.put("email",usuario);
-
+        userInfos.put("sexo",sexocheck);
+        userInfos.put("status",ativocheck);
+        userInfos.put("download",download);
+        userInfos.put("upload",upload);
         userRef.setValue(userInfos);
         finish();
+        Toast toast = Toast.makeText(this,"Usuario Cadastrado !",Toast.LENGTH_LONG);
+        toast.show();
 
 
 

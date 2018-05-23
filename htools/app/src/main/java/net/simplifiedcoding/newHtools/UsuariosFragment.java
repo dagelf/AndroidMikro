@@ -35,8 +35,8 @@ public class UsuariosFragment extends Fragment {
         bntPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast toast = Toast.makeText(getView().getContext(), "Click evento ",Toast.LENGTH_LONG);
-                toast.show();
+//                Toast toast = Toast.makeText(getView().getContext(), "Click evento ",Toast.LENGTH_LONG);
+//                toast.show();
                 Intent it = new Intent(getActivity(), ScrollingActivity.class);
                 startActivity(it);
             }

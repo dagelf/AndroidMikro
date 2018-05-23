@@ -81,8 +81,7 @@ public class FirebaseClient {
             p.setNome(user);
             p.setEmail(mail);
             pessoas.add(p);
-            pessoas.add(p);
-            pessoas.add(p);
+
         }
         //count
         count = pessoas.size();
@@ -103,7 +102,5 @@ public class FirebaseClient {
         return count;
     }
 
-    public  void salvarUser(){
 
-    }
 }
