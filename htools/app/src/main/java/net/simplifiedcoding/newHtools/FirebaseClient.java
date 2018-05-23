@@ -28,10 +28,11 @@ public class FirebaseClient {
     ListView listView;
     Context c;
     CustomAdapter customAdapter;
+    private Integer count;
+
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
     private FirebaseAuth mAuth;
-
     DatabaseReference userRef ;
 //    FirebaseUser user = mAuth.getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -51,17 +52,6 @@ public class FirebaseClient {
         p1.setNome("Rosa Araujo de Sousa");
         pessoas.add(p);
         pessoas.add(p1);
-        pessoas.add(p1);
-        pessoas.add(p);
-        pessoas.add(p1);
-        pessoas.add(p1);
-        pessoas.add(p);
-        pessoas.add(p1);
-        pessoas.add(p);
-        pessoas.add(p1);
-        pessoas.add(p);
-        pessoas.add(p1);
-        pessoas.add(p1);
 
         customAdapter = new CustomAdapter(c, pessoas);
         listView.setAdapter((ListAdapter) customAdapter);
@@ -73,13 +63,9 @@ public class FirebaseClient {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 getupdates(dataSnapshot);
-
             }
-
             @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
+            public void onCancelled(DatabaseError databaseError) {}
         });
     }
     public void getupdates(DataSnapshot dataSnapshot){
@@ -95,13 +81,21 @@ public class FirebaseClient {
             p.setEmail(mail);
             pessoas.add(p);
         }
+        //count
+        count = pessoas.size();
+
         if(pessoas.size()>0)
         {
             customAdapter = new CustomAdapter(c, pessoas);
             listView.setAdapter((ListAdapter) customAdapter);
+
         }else
         {
             Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
         }
+    }
+    public void usersCount(){
+        System.out.println("USUARIOS CADASTRADOS : " + count);
+
     }
 }
