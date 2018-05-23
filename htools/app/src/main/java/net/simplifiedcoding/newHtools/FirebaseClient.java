@@ -40,7 +40,8 @@ public class FirebaseClient {
     public  FirebaseClient(Context c, ListView listView)
     {
         this.c= c;
-        this.listView= listView;    }
+        this.listView= listView;
+        count=0 ;}
 
     public  void refreshdata()
     {
@@ -80,6 +81,8 @@ public class FirebaseClient {
             p.setNome(user);
             p.setEmail(mail);
             pessoas.add(p);
+            pessoas.add(p);
+            pessoas.add(p);
         }
         //count
         count = pessoas.size();
@@ -89,6 +92,7 @@ public class FirebaseClient {
             customAdapter = new CustomAdapter(c, pessoas);
             listView.setAdapter((ListAdapter) customAdapter);
 
+
         }else
         {
             Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
@@ -96,6 +100,6 @@ public class FirebaseClient {
     }
 
     public int usersCount(){
-        return pessoas.size();
+        return count;
     }
 }

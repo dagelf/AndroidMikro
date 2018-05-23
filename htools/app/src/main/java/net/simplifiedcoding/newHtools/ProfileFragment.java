@@ -15,7 +15,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import net.simplifiedcoding.bottomnavigationexample.R;
-import net.simplifiedcoding.newHtools.Adapter.AdapterCursosPersonalizado;
+
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
