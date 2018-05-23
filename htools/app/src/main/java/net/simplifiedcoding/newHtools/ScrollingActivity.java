@@ -7,7 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import net.simplifieldcoding.newHtools.R;
+import net.simplifiedcoding.bottomnavigationexample.R;
+
 
 public class ScrollingActivity extends AppCompatActivity {
 

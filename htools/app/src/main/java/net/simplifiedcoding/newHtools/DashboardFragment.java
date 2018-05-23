@@ -51,8 +51,8 @@ public class DashboardFragment extends Fragment {
             public void onClick(View v) {
                 Toast toast = Toast.makeText(getView().getContext(), "Click evento ",Toast.LENGTH_LONG);
                 toast.show();
-//                Intent it = new Intent(this, MainActivity.class);
-//                startActivity(it);
+                Intent it = new Intent(getActivity(), ScrollingActivity.class);
+                startActivity(it);
 //                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 //                transaction.replace(R.id.activity_montar_lista_inferior, new FavoritosFragment());
 //                transaction.commit();
