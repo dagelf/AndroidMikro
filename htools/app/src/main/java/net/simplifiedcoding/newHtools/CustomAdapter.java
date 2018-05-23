@@ -54,6 +54,7 @@ public class CustomAdapter extends BaseAdapter {
 
         MyHolder holder= new MyHolder(convertview);
         holder.nameTxt.setText(pessoas.get(i).getNome());
+        holder.mailTxt.setText(pessoas.get(i).getEmail());
 
         return convertview;
     }

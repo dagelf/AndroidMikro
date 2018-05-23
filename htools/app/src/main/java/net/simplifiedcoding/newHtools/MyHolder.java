@@ -13,11 +13,13 @@ import net.simplifiedcoding.bottomnavigationexample.R;
 public class MyHolder {
 
     TextView nameTxt;
+    TextView mailTxt;
     ImageView img;
     public MyHolder(View itemView) {
 
 
         nameTxt= (TextView) itemView.findViewById(R.id.nameTxt);
+        mailTxt = (TextView) itemView.findViewById(R.id.mailTxt);
 
 
 

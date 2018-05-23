@@ -94,8 +94,8 @@ public class FirebaseClient {
             Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
         }
     }
-    public void usersCount(){
-        System.out.println("USUARIOS CADASTRADOS : " + count);
 
+    public int usersCount(){
+        return pessoas.size();
     }
 }

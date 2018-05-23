@@ -34,7 +34,8 @@ public class DashboardFragment extends Fragment {
 //        listView.setAdapter((ListAdapter) customAdapter);
         FirebaseClient f = new FirebaseClient(getActivity(),listView);
         f.getUsers();
-        f.usersCount();
+       Integer c =  f.usersCount();
+       System.out.print("TOTAL " +c);
         return vDash;
     }
 }
