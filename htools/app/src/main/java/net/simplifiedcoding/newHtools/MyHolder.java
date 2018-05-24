@@ -17,6 +17,7 @@ public class MyHolder {
     TextView statusTxt;
     TextView downTxt;
     TextView upTxt;
+    TextView countSize;
     ImageView img;
     public MyHolder(View itemView) {
 
@@ -26,6 +27,10 @@ public class MyHolder {
         statusTxt = (TextView) itemView.findViewById(R.id.nameStatus);
         downTxt =  (TextView) itemView.findViewById(R.id.textDown);
         upTxt =  (TextView) itemView.findViewById(R.id.textUp);
+
+
+        ////item_card
+        countSize = (TextView) itemView.findViewById(R.id.counttxt);
 
 
 

@@ -102,8 +102,46 @@ public class FirebaseClient {
         }
     }
 
-    public int usersCount(){
-        return count;
+    public void usersCount(){
+        userRef = database.getReference("users/");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    String user;
+                    String mail;
+                    Pessoa p = new Pessoa();
+
+                    user = objSnapshot.child("usuario").getValue(String.class);
+                    mail = objSnapshot.child("email").getValue(String.class);
+                    p.setNome(user);
+                    p.setEmail(mail);
+                    p.setDownload("300");
+                    p.setUpload("300");
+                    p.setStatus("ativo");
+
+                    pessoas.add(p);
+
+                }
+                //count
+
+
+                if(pessoas.size()>0)
+                {
+                    customAdapter = new CustomAdapter(c, pessoas);
+                    listView.setAdapter((ListAdapter) customAdapter);
+
+
+                }else
+                {
+                    Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
     }
 
 

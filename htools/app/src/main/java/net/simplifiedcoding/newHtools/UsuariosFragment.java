@@ -44,8 +44,8 @@ public class UsuariosFragment extends Fragment {
 
         FirebaseClient f = new FirebaseClient(getActivity(),listView);
         f.getUsers();
-        Integer c =  f.usersCount();
-        System.out.print("TOTAL " + c);
+//        Integer c =  f.usersCount();
+//        System.out.print("TOTAL " + c);
         return vDash;
     }
 
