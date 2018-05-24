@@ -40,26 +40,26 @@ public class HomeFragment extends Fragment {
 //
 //        mPieChart.startAnimation();
  View vhome = inflater.inflate(R.layout.fragment_home, container, false);
-//        BarChart mBarChart = (BarChart) vhome.findViewById(R.id.barchart);
-//
-//        mBarChart.addBar(new BarModel(50, 0xFF123456));
-//        mBarChart.addBar(new BarModel(36,  0xFF343456));
+        BarChart mBarChart = (BarChart) vhome.findViewById(R.id.barchart);
 
-//        mBarChart.addBar(new BarModel(3.3f, 0xFF563456));
-//        mBarChart.addBar(new BarModel(1.1f, 0xFF873F56));
-//        mBarChart.addBar(new BarModel(2.7f, 0xFF56B7F1));
-//        mBarChart.addBar(new BarModel(2.f,  0xFF343456));
-//        mBarChart.addBar(new BarModel(0.4f, 0xFF1FF4AC));
-//        mBarChart.addBar(new BarModel(4.f,  0xFF1BA4E6));
-//
-//        mBarChart.startAnimation();
+        mBarChart.addBar(new BarModel(50, 0xFF123456));
+        mBarChart.addBar(new BarModel(36,  0xFF343456));
+
+        mBarChart.addBar(new BarModel(3.3f, 0xFF563456));
+        mBarChart.addBar(new BarModel(1.1f, 0xFF873F56));
+        mBarChart.addBar(new BarModel(2.7f, 0xFF56B7F1));
+        mBarChart.addBar(new BarModel(2.f,  0xFF343456));
+        mBarChart.addBar(new BarModel(0.4f, 0xFF1FF4AC));
+        mBarChart.addBar(new BarModel(4.f,  0xFF1BA4E6));
+
+        mBarChart.startAnimation();
 
 
 
         PieChart mPieChart = (PieChart) vhome.findViewById(R.id.piechart);
-        mPieChart.addPieSlice(new PieModel("Masculino", 50, Color.parseColor("#FE6DA8")));
-        mPieChart.addPieSlice(new PieModel("Femino", 45, Color.parseColor("#56B7F1")));
-        mPieChart.addPieSlice(new PieModel("Outros", 5, Color.parseColor("#CDA67F")));
+        mPieChart.addPieSlice(new PieModel("Masculino", 50, Color.parseColor("#56B7F1")));
+        mPieChart.addPieSlice(new PieModel("Femino", 45, Color.parseColor("#FE6DA8")));
+
 
 //        ValueLineChart mCubicValueLineChart = (ValueLineChart) vhome.findViewById(R.id.cubiclinechart);
 //
