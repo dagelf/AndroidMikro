@@ -51,14 +51,17 @@
                     android:layout_height="match_parent"
                     android:layout_marginTop="8dp">
 
-                    <org.eazegraph.lib.charts.BarChart xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/barchart"
+                    <org.eazegraph.lib.charts.ValueLineChart
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
+                        android:id="@+id/cubiclinechart"
                         android:layout_width="match_parent"
-                        android:layout_height="256dp"
-                        android:padding="10dp"
-                        app:egBarWidth="20dp"
-                        app:egFixedBarWidth="true"
-                        app:egLegendHeight="40dp" />
+                        android:layout_height="200dp"
+                        app:egUseCubic="true"
+                        app:egUseOverlapFill="true"
+                        app:egCurveSmoothness="0.4"
+                        app:egIndicatorLineColor="#FE6DA8"
+                        app:egLegendHeight="40dp"
+                        app:egShowStandardValue="true"/>
 
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
