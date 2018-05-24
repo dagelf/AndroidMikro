@@ -1,10 +1,14 @@
 package net.simplifiedcoding.newHtools;
 
+import android.graphics.Color;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import net.simplifiedcoding.bottomnavigationexample.R;
+
+import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.PieModel;
 
 /**
  * Created by jeferson on 22/05/18.
@@ -19,6 +23,7 @@ public class MyHolder {
     TextView upTxt;
     TextView countSize;
     ImageView img;
+    PieChart mPieChart;
     public MyHolder(View itemView) {
 
 
@@ -30,7 +35,7 @@ public class MyHolder {
 
 
         ////item_card
-        countSize = (TextView) itemView.findViewById(R.id.counttxt);
+       // countSize = (TextView) itemView.findViewById(R.id.counttxt);
 
 
 

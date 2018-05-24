@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
 //        mPieChart.addPieSlice(new PieModel("Eating", 9, Color.parseColor("#FED70E")));
 //
 //        mPieChart.startAnimation();
-     View vhome = inflater.inflate(R.layout.fragment_home, container, false);
+ View vhome = inflater.inflate(R.layout.fragment_home, container, false);
 //        BarChart mBarChart = (BarChart) vhome.findViewById(R.id.barchart);
 //
 //        mBarChart.addBar(new BarModel(50, 0xFF123456));

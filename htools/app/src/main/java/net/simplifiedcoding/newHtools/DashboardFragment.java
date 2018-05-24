@@ -2,6 +2,7 @@ package net.simplifiedcoding.newHtools;
 
 import android.app.Activity;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -25,7 +26,7 @@ public class DashboardFragment extends Fragment {
     //ListView listView;
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
-    CustomAdapter customAdapter;
+    DashAdapter dashAdapter;
     private Activity activity;
 
     @Override
@@ -56,9 +57,29 @@ public class DashboardFragment extends Fragment {
 
             }
         });
-//        customAdapter = new CustomAdapter(getActivity(), pessoas);
-//        listView.setAdapter((ListAdapter) customAdapter);
-        FirebaseClient f = new FirebaseClient(getActivity(),listView);
+//        View convertview;
+//        ViewGroup viewGroup;
+//
+//        if (inflater == null) {
+//            inflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//        }
+//        if (convertview == null) {
+//            convertview = inflater.inflate(R.layout.list_item, viewGroup, false);
+//
+//        }
+
+        Pessoa p = new Pessoa();
+        Pessoa p1 = new Pessoa();
+        p.setEmail("joao@gmail.com");
+        p.setNome("Joao Araujo de Sousa");
+        p1.setEmail("rosa@gmail.com");
+        p1.setNome("Rosa Araujo de Sousa");
+        pessoas.add(p);
+        pessoas.add(p1);
+
+        dashAdapter = new DashAdapter(getActivity(), pessoas);
+        listView.setAdapter((ListAdapter) dashAdapter);
+//        FirebaseClient f = new FirebaseClient(getActivity(),listView);
 //        f.getUsers();
 //        Integer c =  f.usersCount();
 //        System.out.print("TOTAL " + c);
