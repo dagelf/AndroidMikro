@@ -1,5 +1,6 @@
 package net.simplifiedcoding.newHtools;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -31,7 +32,12 @@ import net.simplifiedcoding.bottomnavigationexample.R;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.net.SocketFactory;
+
+import me.legrange.mikrotik.ApiConnection;
 
 
 public class ScrollingActivity extends AppCompatActivity {
@@ -47,6 +53,7 @@ public class ScrollingActivity extends AppCompatActivity {
     private CheckBox checkAtivo;
     String sexo;
     String ativo = "N";
+    MyTask mt;
 
     final  String LOG_TAG = "mLog";
 
@@ -84,7 +91,9 @@ public class ScrollingActivity extends AppCompatActivity {
                     ativo="S";
                 }
 
-                salvar();
+                //salvar();
+                mt = new MyTask();
+                mt.execute();
 
             }
         });
@@ -126,7 +135,7 @@ public class ScrollingActivity extends AppCompatActivity {
         userInfos.put("senha",senha);
         userInfos.put("data",data);
         userInfos.put("sexo",sexocheck);
-        userInfos.put("status",ativocheck);
+        userInfos.put("boqueado",ativocheck);
         userInfos.put("download",download);
         userInfos.put("upload",upload);
         userRef.setValue(userInfos);
@@ -134,5 +143,66 @@ public class ScrollingActivity extends AppCompatActivity {
         Toast toast = Toast.makeText(this,"Usuario Cadastrado !",Toast.LENGTH_LONG);
         toast.show();
 
+    }
+
+
+    class MyTask extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(LOG_TAG, "startOn");
+            //tvResult.setText("Begin");
+        }
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+
+                List<Map<String, String>> result = null;
+
+                try {
+                    Log.d(LOG_TAG, "start");
+
+
+                    ApiConnection con = ApiConnection.connect(SocketFactory.getDefault(), Config.HOST, ApiConnection.DEFAULT_PORT, 200);
+
+                    Log.d(LOG_TAG, "start2");
+                    con.login(Config.USERNAME, Config.PASSWORD);
+
+                    if (con.isConnected()) {
+                        //tvResult.setText("OK!");
+                        Log.d(LOG_TAG, "isConnected");
+                    }
+                    final String usuario = editEmail.getText().toString().trim();
+                    final String senha = editSenha.getText().toString().trim();
+                    final String nome = editNome.getText().toString().trim();
+                    System.out.println("VAI");
+                    System.out.println(nome);
+                    System.out.println(usuario);
+                    System.out.println(senha);
+
+                    result = con.execute("/ip/hotspot/user/add name=" + usuario + " password=" + senha);
+                    //result = con.execute("/ip/arp/print");
+                    System.out.println(result);
+                    for (Map<String, String> res : result) {
+                        Log.d(LOG_TAG, res.toString());
+                    }
+                    con.close();
+                } catch (Exception e) {
+                    Log.d(LOG_TAG, "error");
+                    Log.d(LOG_TAG, e.getMessage());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            Log.d(LOG_TAG, "FIM");
+        }
     }
 }
