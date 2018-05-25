@@ -96,9 +96,8 @@ public class ScrollingActivity extends AppCompatActivity {
                     enable="yes";
                 }
 
-                //salvar();
-                mt = new MyTask();
-                mt.execute();
+                salvar();
+
 
 
             }
@@ -145,6 +144,8 @@ public class ScrollingActivity extends AppCompatActivity {
         userInfos.put("download",download);
         userInfos.put("upload",upload);
         userRef.setValue(userInfos);
+        mt = new MyTask();
+        mt.execute();
         finish();
         Toast toast = Toast.makeText(this,"Usuario Cadastrado !",Toast.LENGTH_LONG);
         toast.show();
