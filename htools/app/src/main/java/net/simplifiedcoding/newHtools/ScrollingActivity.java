@@ -92,6 +92,8 @@ public class ScrollingActivity extends AppCompatActivity {
                 if (checkAtivo.isChecked()){
                     ativo="S";
                     enable = "no";
+                }else{
+                    enable="yes";
                 }
 
                 //salvar();
@@ -185,15 +187,18 @@ public class ScrollingActivity extends AppCompatActivity {
                     final String up = editUp.getText().toString().trim();
 
 
-                    System.out.println("VAI");
+
                     System.out.println(nome);
                     System.out.println(usuario);
                     System.out.println(senha);
                     System.out.println(enable);
 
+
                     result = con.execute("/ip/hotspot/user/add name=" + usuario + " password=" + senha + " limit-bytes-out="+up+ " limit-bytes-in=" + down + " disabled="+enable);
-                    mt = new MyTask();
-                    mt.execute();
+                    System.out.println(result.toString());
+
+// mt = new MyTask();
+//                    mt.execute();
                     //result = con.execute("/ip/arp/print");
                     System.out.println(result);
                     for (Map<String, String> res : result) {
