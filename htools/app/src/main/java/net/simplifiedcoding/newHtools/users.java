@@ -55,7 +55,7 @@ public class users {
 
 
 
-                    result = con.execute("ip/hotspot/active/print/count-only");
+                    result = con.execute("/ip/hotspot/active/print count-only");
                     //result = con.execute("/ip/arp/print");
                     System.out.println(result);
                     for (Map<String, String> res : result) {
