@@ -57,10 +57,21 @@ public class users {
 
                     result = con.execute("/ip/hotspot/active/print count-only");
                     //result = con.execute("/ip/arp/print");
-                    System.out.println(result);
+
+                    String count ="";
                     for (Map<String, String> res : result) {
-                        Log.d(LOG_TAG, res.toString());
+
+                        System.out.println("ATIVOS " + res.values());
+                        System.out.println("ATIVOSS " + res.values().toString());
+//                        Log.d("RESU",res.toString());
+//                        count = res.get(1).toString();
+//                        Log.d("RESU0",res.get(0));
+//                        Log.d("RESU1",res.get(1));
+//                        Log.d("RESU0STRIN",res.get(0).toString());
+//                        Log.d("RESU1TRING",res.get(1).toString());
+
                     }
+                    System.out.println(count);
                     con.close();
                 } catch (Exception e) {
                     Log.d(LOG_TAG, "error");
