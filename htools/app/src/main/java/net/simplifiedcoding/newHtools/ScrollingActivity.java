@@ -52,6 +52,7 @@ public class ScrollingActivity extends AppCompatActivity {
     private EditText editUp;
     private CheckBox checkAtivo;
     String sexo;
+    String enable = "yes";
     String ativo = "N";
     MyTask mt;
 
@@ -76,6 +77,7 @@ public class ScrollingActivity extends AppCompatActivity {
         checkAtivo = findViewById(R.id.checkAtivo);
 
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,11 +91,13 @@ public class ScrollingActivity extends AppCompatActivity {
                 }
                 if (checkAtivo.isChecked()){
                     ativo="S";
+                    enable = "no";
                 }
 
                 //salvar();
                 mt = new MyTask();
                 mt.execute();
+
 
             }
         });
@@ -177,12 +181,19 @@ public class ScrollingActivity extends AppCompatActivity {
                     final String usuario = editEmail.getText().toString().trim();
                     final String senha = editSenha.getText().toString().trim();
                     final String nome = editNome.getText().toString().trim();
+                    final String down = editDown.getText().toString().trim();
+                    final String up = editUp.getText().toString().trim();
+
+
                     System.out.println("VAI");
                     System.out.println(nome);
                     System.out.println(usuario);
                     System.out.println(senha);
+                    System.out.println(enable);
 
-                    result = con.execute("/ip/hotspot/user/add name=" + usuario + " password=" + senha);
+                    result = con.execute("/ip/hotspot/user/add name=" + usuario + " password=" + senha + " limit-bytes-out="+up+ " limit-bytes-in=" + down + " disabled="+enable);
+                    mt = new MyTask();
+                    mt.execute();
                     //result = con.execute("/ip/arp/print");
                     System.out.println(result);
                     for (Map<String, String> res : result) {
