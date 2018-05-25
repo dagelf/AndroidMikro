@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         //loading the default fragment
         loadFragment(new HomeFragment());
 
-        Fragment f = new users();
+        ///Fragment f = new users();
 
         //getting bottom navigation view and attaching the listener
         BottomNavigationView navigation = findViewById(R.id.navigation);
