@@ -37,7 +37,7 @@ import javax.net.SocketFactory;
 import me.legrange.mikrotik.ApiConnection;
 
 
-public class users extends Fragment {
+public class users {
 
     private FirebaseAuth mAuth;
     private EditText editEmail;
@@ -55,113 +55,7 @@ public class users extends Fragment {
 
 
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vUser = inflater.inflate(R.layout.fragment_users, container, false);
-        mAuth = FirebaseAuth.getInstance();
-        editEmail = vUser.findViewById(R.id.cadEmail);
-        editNome = vUser.findViewById(R.id.cadNome);
-        editSenha = vUser.findViewById(R.id.cadSenha);
-        editData = vUser.findViewById(R.id.cadData);
-        ///btnSalvar = (Button) vUser.findViewById(R.id.btnSalvar);
-//        mt = new MyTask();
-//        mt.execute();
 
-        btnSalvar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Log.d(LOG_TAG, "ANTES TOAST");
-
-                mt = new MyTask();
-                mt.execute();
-
-
-                  //salvar();
-
-            }
-        });
-        return vUser;
-    }
-
-    private void salvar(){
-
-        final String usuario = editEmail.getText().toString().trim();
-        String senha = editSenha.getText().toString().trim();
-        final String nome = editNome.getText().toString().trim();
-
-
-        String data = editData.getText().toString().trim();
-
-        if(usuario.equals("")){
-            editEmail.setError("Preencha este Campo !");
-            editEmail.requestFocus();
-            return;
-        }
-        if(senha.equals("")){
-            editSenha.setError("Preencha este Campo !");
-            editSenha.requestFocus();
-            return;
-        }
-        if(nome.equals("")){
-            editSenha.setError("Preencha este Campo !");
-            editSenha.requestFocus();
-            return;
-        }
-
-
-        mAuth.createUserWithEmailAndPassword(usuario, senha)
-                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-
-                        if(task.isSuccessful()){
-                            mt = new MyTask();
-                            mt.execute();
-                            Toast toast = Toast.makeText(getView().getContext(), "Usuario Cadastrado com Sucesso ! - "+editNome.getText().toString().trim(),Toast.LENGTH_LONG);
-                            toast.show();
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-
-
-                            DatabaseReference userRef = database.getReference("users/" + user.getUid());
-
-                            Map<String, Object> userInfos = new HashMap<>();
-                            userInfos.put("usuario",nome);
-                            userInfos.put("email",usuario);
-                            userRef.setValue(userInfos);
-                            getActivity().finish();
-
-                        }else{
-                            try{
-                                throw  task.getException();
-
-                            }catch (FirebaseAuthWeakPasswordException e){
-                                editSenha.setError("Senha Fraca");
-                                editSenha.requestFocus();
-                            }catch (FirebaseAuthInvalidCredentialsException e){
-                                editEmail.setError("Email invalido !");
-                                editEmail.requestFocus();
-                            }catch (FirebaseAuthUserCollisionException e){
-                                editEmail.setError("Email ja existe !");
-                                editEmail.requestFocus();
-                            }catch (Exception e){
-                                Log.e("Cadastro", e.getMessage());
-                            }
-                        }
-                    }
-
-                });
-
-//        mAuth.createUserWithEmailAndPassword(usuario,senha)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//
-//                });
-//
-//        Toast toast = Toast.makeText(getView().getContext(), "Clickko - "+nome,Toast.LENGTH_LONG);
-//        toast.show();
-    }
 
 
     class MyTask extends AsyncTask<Void,Void,Void> {
@@ -223,11 +117,5 @@ public class users extends Fragment {
             Log.d(LOG_TAG, "FIM");
         }
     }
-
-
-
-
-
-
 
 }
