@@ -96,7 +96,7 @@ public class DashboardFragment extends Fragment {
                     if (con.isConnected()) {
                         //tvResult.setText("OK!");
                         Log.d(LOG_TAG, "isConnected2");
-                        result1 = con.execute("/ip/hotspot/user/print count-only");
+                        result1 = con.execute("/ip/hotspot/active/print count-only");
                         for (Map<String, String> res1 : result1) {
 
                             System.out.println("Cadas " + res1.values());
