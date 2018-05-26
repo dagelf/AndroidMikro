@@ -42,6 +42,7 @@ public class DashboardFragment extends Fragment {
     public TextView txtOn;
     public TextView txtCad;
     MyTask mt;
+    MyTask mt2;
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
     DashAdapter dashAdapter;
@@ -55,7 +56,8 @@ public class DashboardFragment extends Fragment {
          txtOn = (TextView) vDash.findViewById(R.id.texOnline);
          txtCad = (TextView) vDash.findViewById(R.id.txtCad);
          mt = new MyTask();
-         mt.execute();
+         mt2 = new MyTask();
+         mt2.execute();
         return vDash;
     }
     class MyTask extends AsyncTask<Void,Void,Void> {
@@ -89,24 +91,11 @@ public class DashboardFragment extends Fragment {
 
                             System.out.println("ATIVOS " + res.values());
                             txtOn.setText(res.values().toString());
-                            ///count = res.values().toString();
+
                         }
                     }
 
                     con.close();
-
-                    if (con1.isConnected()) {
-                        //tvResult.setText("OK!");
-                        Log.d(LOG_TAG, "isConnected2");
-                        result1 = con1.execute("/ip/hotspot/active/print count-only");
-                        for (Map<String, String> res1 : result1) {
-
-                            System.out.println("Cadas " + res1.values());
-                            txtCad.setText(res1.values().toString());
-                            ///count = res.values().toString();
-                        }
-                    }
-                    con1.close();
                 } catch (Exception e) {
                     Log.d(LOG_TAG, "error");
                     Log.d(LOG_TAG, e.getMessage());
@@ -123,6 +112,57 @@ public class DashboardFragment extends Fragment {
             Log.d(LOG_TAG, "FIM");
         }
     }
+    class MyTask2 extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d(LOG_TAG, "startOn");
+            //tvResult.setText("Begin");
+        }
 
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                try {
+                    Log.d(LOG_TAG, "start");
+
+
+                    ApiConnection con = ApiConnection.connect(SocketFactory.getDefault(), Config.HOST, ApiConnection.DEFAULT_PORT, 200);
+
+
+                    Log.d(LOG_TAG, "start2");
+                    con.login(Config.USERNAME, Config.PASSWORD);
+
+
+                    if (con.isConnected()) {
+                        //tvResult.setText("OK!");
+                        Log.d(LOG_TAG, "isConnected");
+
+                        result = con.execute("/ip/hotspot/user/print count-only");
+                        for (Map<String, String> res : result) {
+
+                            System.out.println("cadas " + res.values());
+                            txtCad.setText(res.values().toString());
+
+                        }
+                    }
+
+                    con.close();
+                } catch (Exception e) {
+                    Log.d(LOG_TAG, "error");
+                    Log.d(LOG_TAG, e.getMessage());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            Log.d(LOG_TAG, "FIM");
+        }
+    }
 
 }
