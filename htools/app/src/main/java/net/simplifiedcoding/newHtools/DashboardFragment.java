@@ -56,8 +56,8 @@ public class DashboardFragment extends Fragment {
          txtCad = (TextView) vDash.findViewById(R.id.txtCad);
          users u = new users(getActivity(),txtCad);
          u.comandoRb();
-//         mt = new MyTask();
-//         mt.execute();
+         mt = new MyTask();
+         mt.execute();
         return vDash;
     }
     class MyTask extends AsyncTask<Void,Void,Void> {

@@ -37,10 +37,10 @@ public class users {
 
     public void comandoRb(){
 
-        textView.setText("AKI");
 
-//        mt = new MyTask();
-//        mt.execute();
+
+        mt = new MyTask();
+        mt.execute();
 //        System.out.println("USER" + count);
 //        System.out.println("comando" + result);
 
@@ -72,17 +72,17 @@ public class users {
 
 
 
-                    result = con.execute("/ip/hotspot/active/print count-only");
+                    result = con.execute("/ip/hotspot/user/print count-only");
                     //result = con.execute("/ip/arp/print");
 
 
                     for (Map<String, String> res : result) {
 
                         System.out.println("ATIVOS " + res.values());
-                        arrayList.add(count);
+                        textView.setText(res.values().toString());
                         count = res.values().toString();
                     }
-                    System.out.println(count);
+                    ;
                     con.close();
                 } catch (Exception e) {
                     Log.d(LOG_TAG, "error");
@@ -97,8 +97,6 @@ public class users {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            System.out.println("FINAL " +  count);
-            System.out.println("FINAL " +  result);
             Log.d(LOG_TAG, "FIM");
         }
     }
