@@ -37,6 +37,8 @@ public class users {
 
     public void comandoRb(){
 
+        textView.setText("AKI");
+
 //        mt = new MyTask();
 //        mt.execute();
 //        System.out.println("USER" + count);

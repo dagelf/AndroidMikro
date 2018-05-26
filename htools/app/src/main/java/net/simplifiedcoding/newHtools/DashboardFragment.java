@@ -54,8 +54,10 @@ public class DashboardFragment extends Fragment {
         View vDash = inflater.inflate(R.layout.fragment_dashboard, container, false);
          txtOn = (TextView) vDash.findViewById(R.id.texOnline);
          txtCad = (TextView) vDash.findViewById(R.id.txtCad);
-         mt = new MyTask();
-         mt.execute();
+         users u = new users(getActivity(),txtCad);
+         u.comandoRb();
+//         mt = new MyTask();
+//         mt.execute();
         return vDash;
     }
     class MyTask extends AsyncTask<Void,Void,Void> {

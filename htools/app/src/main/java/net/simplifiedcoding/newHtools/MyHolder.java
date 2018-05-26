@@ -35,7 +35,7 @@ public class MyHolder {
 
 
         ////item_card
-       // countSize = (TextView) itemView.findViewById(R.id.counttxt);
+        countSize = (TextView) itemView.findViewById(R.id.txtCad);
 
 
 

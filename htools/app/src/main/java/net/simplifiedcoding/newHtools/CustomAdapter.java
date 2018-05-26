@@ -59,6 +59,8 @@ public class CustomAdapter extends BaseAdapter {
         holder.downTxt.setText(pessoas.get(i).getDownload());
         holder.upTxt.setText(pessoas.get(i).getUpload());
 
+
+
         return convertview;
     }
 }
