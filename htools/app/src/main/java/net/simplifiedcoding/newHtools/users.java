@@ -2,8 +2,10 @@ package net.simplifiedcoding.newHtools;
 
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,19 +20,28 @@ import me.legrange.mikrotik.ApiConnection;
 
 public class users {
 
+    Context c;
+    TextView textView;
+    public users(Context c, TextView textView) {
+        this.c = c;
+        this.textView = textView;
+    }
 
     final   String LOG_TAG = "mLog";
     public  List<Map<String, String>> result = null;
     public  ArrayList arrayList = new ArrayList();
     public  String count ="";
+
     MyTask  mt;
 
-    public String comandoRb(){
-        mt = new MyTask();
-        mt.execute();
-        System.out.println("USER" + count);
-        System.out.println("comando" + result);
-        return count;
+
+    public void comandoRb(){
+
+//        mt = new MyTask();
+//        mt.execute();
+//        System.out.println("USER" + count);
+//        System.out.println("comando" + result);
+
     }
     class MyTask extends AsyncTask<Void,Void,Void> {
         @Override
