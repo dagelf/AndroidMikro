@@ -93,12 +93,12 @@ public class DashboardFragment extends Fragment {
                         }
                     }
 
-
+                    con.close();
 
                     if (con1.isConnected()) {
                         //tvResult.setText("OK!");
                         Log.d(LOG_TAG, "isConnected2");
-                        result1 = con.execute("/ip/hotspot/active/print count-only");
+                        result1 = con1.execute("/ip/hotspot/active/print count-only");
                         for (Map<String, String> res1 : result1) {
 
                             System.out.println("Cadas " + res1.values());
@@ -106,9 +106,7 @@ public class DashboardFragment extends Fragment {
                             ///count = res.values().toString();
                         }
                     }
-
-
-                    con.close();
+                    con1.close();
                 } catch (Exception e) {
                     Log.d(LOG_TAG, "error");
                     Log.d(LOG_TAG, e.getMessage());
