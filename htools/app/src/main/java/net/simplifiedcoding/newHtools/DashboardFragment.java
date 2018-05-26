@@ -74,9 +74,11 @@ public class DashboardFragment extends Fragment {
 
 
                     ApiConnection con = ApiConnection.connect(SocketFactory.getDefault(), Config.HOST, ApiConnection.DEFAULT_PORT, 200);
+                    ApiConnection con1 = ApiConnection.connect(SocketFactory.getDefault(), Config.HOST, ApiConnection.DEFAULT_PORT, 200);
 
                     Log.d(LOG_TAG, "start2");
                     con.login(Config.USERNAME, Config.PASSWORD);
+                    con1.login(Config.USERNAME, Config.PASSWORD);
 
                     if (con.isConnected()) {
                         //tvResult.setText("OK!");
@@ -93,7 +95,7 @@ public class DashboardFragment extends Fragment {
 
 
 
-                    if (con.isConnected()) {
+                    if (con1.isConnected()) {
                         //tvResult.setText("OK!");
                         Log.d(LOG_TAG, "isConnected2");
                         result1 = con.execute("/ip/hotspot/active/print count-only");
