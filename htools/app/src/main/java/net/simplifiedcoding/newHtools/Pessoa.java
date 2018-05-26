@@ -11,6 +11,24 @@ public class Pessoa {
     private String senha;
     private String download;
     private String upload;
+    private String sexo;
+    private String ativo;
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
+    public String getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
+    }
 
     public String getSenha() {
         return senha;
