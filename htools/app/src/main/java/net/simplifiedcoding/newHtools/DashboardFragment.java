@@ -81,23 +81,31 @@ public class DashboardFragment extends Fragment {
                     if (con.isConnected()) {
                         //tvResult.setText("OK!");
                         Log.d(LOG_TAG, "isConnected");
+
+                        result = con.execute("/ip/hotspot/active/print count-only");
+                        for (Map<String, String> res : result) {
+
+                            System.out.println("ATIVOS " + res.values());
+                            txtOn.setText(res.values().toString());
+                            ///count = res.values().toString();
+                        }
                     }
 
 
 
-                    result = con.execute("/ip/hotspot/active/print count-only");
-                    result1 = con.execute("/ip/hotspot/active/print count-only");
+                    if (con.isConnected()) {
+                        //tvResult.setText("OK!");
+                        Log.d(LOG_TAG, "isConnected2");
+                        result1 = con.execute("/ip/hotspot/user/print count-only");
+                        for (Map<String, String> res1 : result1) {
 
-                    //result = con.execute("/ip/arp/print");
-
-
-                    for (Map<String, String> res : result) {
-
-                        System.out.println("ATIVOS " + res.values());
-                        txtOn.setText(res.values().toString());
-                        ///count = res.values().toString();
+                            System.out.println("Cadas " + res1.values());
+                            txtCad.setText(res1.values().toString());
+                            ///count = res.values().toString();
+                        }
                     }
-                    //////System.out.println(count);
+
+
                     con.close();
                 } catch (Exception e) {
                     Log.d(LOG_TAG, "error");
@@ -112,8 +120,6 @@ public class DashboardFragment extends Fragment {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
-            System.out.println("FINAL " +  count);
-            System.out.println("FINAL " +  result);
             Log.d(LOG_TAG, "FIM");
         }
     }
