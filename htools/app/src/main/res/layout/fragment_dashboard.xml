@@ -44,7 +44,7 @@
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/txtCad"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_above="@+id/txtViewOn"

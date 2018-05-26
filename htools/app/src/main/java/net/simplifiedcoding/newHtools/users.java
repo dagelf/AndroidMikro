@@ -5,6 +5,7 @@ package net.simplifiedcoding.newHtools;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,12 +19,18 @@ import me.legrange.mikrotik.ApiConnection;
 public class users {
 
 
-    final  String LOG_TAG = "mLog";
-    MyTask mt;
+    final   String LOG_TAG = "mLog";
+    public  List<Map<String, String>> result = null;
+    public  ArrayList arrayList = new ArrayList();
+    public  String count ="";
+    MyTask  mt;
 
-    public void comandoRb(){
+    public String comandoRb(){
         mt = new MyTask();
         mt.execute();
+        System.out.println("USER" + count);
+        System.out.println("comando" + result);
+        return count;
     }
     class MyTask extends AsyncTask<Void,Void,Void> {
         @Override
@@ -36,9 +43,6 @@ public class users {
         @Override
         protected Void doInBackground(Void... params) {
             try {
-
-                List<Map<String, String>> result = null;
-
                 try {
                     Log.d(LOG_TAG, "start");
 
@@ -58,18 +62,12 @@ public class users {
                     result = con.execute("/ip/hotspot/active/print count-only");
                     //result = con.execute("/ip/arp/print");
 
-                    String count ="";
+
                     for (Map<String, String> res : result) {
 
                         System.out.println("ATIVOS " + res.values());
-                        System.out.println("ATIVOSS " + res.values().toString());
-//                        Log.d("RESU",res.toString());
-//                        count = res.get(1).toString();
-//                        Log.d("RESU0",res.get(0));
-//                        Log.d("RESU1",res.get(1));
-//                        Log.d("RESU0STRIN",res.get(0).toString());
-//                        Log.d("RESU1TRING",res.get(1).toString());
-
+                        arrayList.add(count);
+                        count = res.values().toString();
                     }
                     System.out.println(count);
                     con.close();
@@ -86,6 +84,8 @@ public class users {
         @Override
         protected void onPostExecute(Void result) {
             super.onPostExecute(result);
+            System.out.println("FINAL " +  count);
+            System.out.println("FINAL " +  result);
             Log.d(LOG_TAG, "FIM");
         }
     }
