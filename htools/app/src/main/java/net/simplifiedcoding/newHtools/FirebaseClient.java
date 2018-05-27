@@ -1,6 +1,8 @@
 package net.simplifiedcoding.newHtools;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -20,16 +22,28 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
+import static android.support.v4.content.ContextCompat.startActivity;
+
 /**
  * Created by jeferson on 22/05/18.
  */
 
-public class FirebaseClient {
+public class FirebaseClient  extends Activity {
     ListView listView;
     Context c;
     CustomAdapter customAdapter;
     int count;
     public int size = 0 ;
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public Intent getIntent() {
+        return super.getIntent();
+    }
 
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
@@ -96,20 +110,44 @@ public class FirebaseClient {
         {
             Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
         }
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
-                Toast toast = Toast.makeText(c, pessoaSelecionada.getUsuario(),Toast.LENGTH_LONG);
-                toast.show();
-
-            }
-        });
+//
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+//                Toast toast = Toast.makeText(c, pessoaSelecionada.getUsuario(),Toast.LENGTH_LONG);
+//                toast.show();
+//                Intent it = new Intent(c, ScrollingActivity.class);
+//               /// startActivity(it);
+//
+//            }
+//        });
 
 
     }
+public ArrayList lista(){
 
+    final ArrayList<Pessoa> p1= new ArrayList<>();
+    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+             pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+             p1.add(pessoaSelecionada);
+            System.out.println("p1 "+p1);
+            System.out.println("p1 -"+p1.toString());
+
+
+            Toast toast = Toast.makeText(c, pessoaSelecionada.getUsuario(),Toast.LENGTH_LONG);
+            toast.show();
+
+           // Intent it = new Intent(c, ScrollingActivity.class);
+            /// startActivity(it);
+
+        }
+    });
+    return p1;
+
+}
     public void usersCount(){
         userRef = database.getReference("users/");
         userRef.addValueEventListener(new ValueEventListener() {

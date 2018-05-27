@@ -22,7 +22,8 @@ import java.util.ArrayList;
  */
 
 public class UsuariosFragment extends Fragment {
-    ArrayList<Pessoa> pessoas= new ArrayList<>();
+    //ArrayList<Pessoa> pessoas= new ArrayList<>();
+    Pessoa pessoaSelecionada;
     CustomAdapter customAdapter;
     private Activity activity;
 
@@ -46,6 +47,26 @@ public class UsuariosFragment extends Fragment {
 
         FirebaseClient f = new FirebaseClient(getActivity(),listView);
         f.getUsers();
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+
+
+                Toast toast = Toast.makeText(getActivity(), pessoaSelecionada.getUsuario() + pessoaSelecionada.getEmail(),Toast.LENGTH_LONG);
+                toast.show();
+
+                // Intent it = new Intent(c, ScrollingActivity.class);
+                /// startActivity(it);
+
+            }
+        });
+
+//        ArrayList<Pessoa> pessoas= new ArrayList<>();
+//        pessoas = f.lista();
+//        System.out.println(" PESSSSOAS  "+pessoas.toString());
+//        System.out.println(" PESSSSOAS  "+pessoas);
 //        Integer c =  f.usersCount();
 //        System.out.print("TOTAL " + c);
         return vDash;
