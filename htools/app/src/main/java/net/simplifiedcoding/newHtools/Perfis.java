@@ -8,6 +8,8 @@ public class Perfis {
     private String download;
     private String upload;
     private String uid;
+    private String nome;
+    private String timeout;
 
 
 public Perfis(){
@@ -39,10 +41,25 @@ public Perfis(){
         this.uid = uid;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getTimeout() {
+        return timeout;
+    }
+
+    public void setTimeout(String timeout) {
+        this.timeout = timeout;
+    }
 
     @Override
     public String toString() {
-        return download;
+        return nome;
     }
 
 }

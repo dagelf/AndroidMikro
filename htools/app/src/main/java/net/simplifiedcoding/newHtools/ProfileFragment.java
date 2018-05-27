@@ -1,5 +1,8 @@
 package net.simplifiedcoding.newHtools;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -40,7 +43,7 @@ import java.util.UUID;
 
 
 public class ProfileFragment extends Fragment {
-    EditText editDown, editUp;
+    EditText editDown, editUp,editNome,editTimeout;
     ListView listV_dados;
 
     FirebaseDatabase firebaseDatabase;
@@ -72,9 +75,11 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
          vProfile = inflater.inflate(R.layout.fragment_profile, container, false);
-         editDown = (EditText) vProfile.findViewById(R.id.editNome);
-         editUp = (EditText) vProfile.findViewById(R.id.editEmail);
-        listV_dados = (ListView) vProfile.findViewById(R.id.listV_dados) ;
+         editNome = (EditText) vProfile.findViewById(R.id.editNome);
+         editDown = (EditText) vProfile.findViewById(R.id.editDonwload);
+         editUp = (EditText) vProfile.findViewById(R.id.editUpload);
+         editTimeout = (EditText) vProfile.findViewById(R.id.editTimeout);
+         listV_dados = (ListView) vProfile.findViewById(R.id.listV_dados) ;
        // inicializarFirebase();
         perfils = new ArrayList<>();
 
@@ -104,25 +109,16 @@ public class ProfileFragment extends Fragment {
             case R.id.menu_novo:
                 Perfis p = new Perfis();
                 p.setUid(UUID.randomUUID().toString());
+                p.setNome(editNome.getText().toString().trim());
+                p.setTimeout(editTimeout.getText().toString().trim());
                 p.setDownload(editDown.getText().toString().trim());
                 p.setUpload(editUp.getText().toString().trim());
+
                 databaseReference.child("perfil").child(p.getUid()).setValue(p);
                 limparCampos();
 
 
-//                String uuid;
-//                String downlod = editDown.getText().toString().trim();
-//                String upload = editUp.getText().toString().trim();
-//                uuid = UUID.randomUUID().toString();
-//                FirebaseDatabase database = FirebaseDatabase.getInstance();
-//                DatabaseReference userRef = database.getReference("perfil/" + uuid);
-//                System.out.println("UUID  ====> " + uuid);
-//
-//                Map<String, Object> userInfos = new HashMap<>();
-//                userInfos.put("download",downlod);
-//                userInfos.put("upload",upload);
-//                System.out.println("USER " + userInfos.toString());
-//                userRef.setValue(userInfos);
+
                 limparCampos();
                 Toast.makeText(getActivity(), "Novo Perfil" , Toast.LENGTH_SHORT).show();
                 return true;
@@ -132,6 +128,8 @@ public class ProfileFragment extends Fragment {
                 pp.setUid(perfilSelecionada.getUid());
                 pp.setDownload(editDown.getText().toString().trim());
                 pp.setUpload(editUp.getText().toString().trim());
+                pp.setNome(editNome.getText().toString().trim());
+                pp.setTimeout(editTimeout.getText().toString().trim());
                 databaseReference.child("perfil").child(pp.getUid()).setValue(pp);
                 limparCampos();
                 Toast.makeText(getActivity(), "Atualizar", Toast.LENGTH_SHORT).show();
