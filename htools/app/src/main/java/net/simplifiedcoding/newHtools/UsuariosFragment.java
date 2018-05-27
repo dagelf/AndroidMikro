@@ -54,10 +54,15 @@ public class UsuariosFragment extends Fragment {
                 pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
 //                Toast toast = Toast.makeText(getActivity(), pessoaSelecionada.getUsuario() + pessoaSelecionada.getEmail(),Toast.LENGTH_LONG);
 //                toast.show();
+                ArrayList<Pessoa> pessoas= new ArrayList<>();
+                pessoas.add(pessoaSelecionada);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("pessoa", pessoas);
+                Intent intent = new Intent(getActivity(), UpdateUser.class);
+                String parametros =  pessoaSelecionada.getUsuario();
+                intent.putExtra("infos", parametros);
 
-                Intent it = new Intent(getActivity(), UpdateUser.class);
-                
-                startActivity(it);
+                startActivity(intent);
 
             }
         });
