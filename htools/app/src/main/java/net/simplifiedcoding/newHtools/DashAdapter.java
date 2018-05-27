@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,11 +35,13 @@ public class DashAdapter  {
     FirebaseDatabase  database = FirebaseDatabase.getInstance();
     ArrayList<Pessoa> pessoas= new ArrayList<>();
     private FirebaseAuth mAuth;
+    TextView textView;
     Pessoa p = new Pessoa();
     int qtdM =0;
     int qtdF =0;
     int qtdAtivo = 0;
     int qtdBloqueado = 0;
+    int qtdUser = 0;
 
     public DashAdapter(Context c, View view) {
         this.c = c;
@@ -105,5 +108,34 @@ public class DashAdapter  {
 
 
     }
+    public void userCount(){
 
+
+
+        userRef = database.getReference("users/");
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    String user;
+                    user = objSnapshot.child("usuario").getValue(String.class);
+
+                    pessoas.add(p);
+                    qtdUser = qtdUser +1;
+
+                }
+                String total;
+                total  = Integer.toString(qtdUser);
+
+                textView = (TextView) view.findViewById(R.id.txtCad);
+                textView.setText(total);
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {}
+        });
+
+
+
+    }
 }
