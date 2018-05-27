@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -18,6 +21,7 @@ import android.widget.Toast;
 import net.simplifiedcoding.bottomnavigationexample.R;
 
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -43,22 +47,79 @@ public class ProfileFragment extends Fragment {
     private ArrayAdapter<Perfis> arrayAdapterPerfil;
 
     Perfis perfilSelecionada;
-
+    /// menu
+    Menu menu;
+    View vProfile;
     public ProfileFragment(){
 
+    }
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
 
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View vProfile = inflater.inflate(R.layout.fragment_profile, container, false);
-
-
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+         vProfile = inflater.inflate(R.layout.fragment_profile, container, false);
         return vProfile;
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_main, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.menu_novo:
+                Toast.makeText(getActivity(), "Novo", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_atualiza:
+                Toast.makeText(getActivity(), "Atualizar", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.menu_deleta:
+                Toast.makeText(getActivity(), "Deletar", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
+    private void eventoDatabase() {
+        databaseReference.child("Pessoa").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                listPerfil.clear();
+                for (DataSnapshot objSnapshot:dataSnapshot.getChildren()){
+                    Perfis p = objSnapshot.getValue(Perfis.class);
+                    listPerfil.add(p);
+                }
+//                arrayAdapterPerfil= new ArrayAdapter<Pessoa>(getActivity(),
+//                        android.R.layout.simple_list_item_1,listPerfil);
+//                listV_dados.setAdapter(arrayAdapterPessoa);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void inicializarFirebase() {
+        FirebaseApp.initializeApp(getActivity());
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        firebaseDatabase.setPersistenceEnabled(true);
+        databaseReference = firebaseDatabase.getReference();
+    }
 
 
     }
