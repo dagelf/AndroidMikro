@@ -34,6 +34,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.net.SocketFactory;
 
@@ -130,9 +131,11 @@ public class ScrollingActivity extends AppCompatActivity {
             editSenha.requestFocus();
             return;
         }
+        String uuid;
+        uuid = UUID.randomUUID().toString();
         FirebaseUser user = mAuth.getCurrentUser();
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference userRef = database.getReference("users/" + user.getUid());
+        DatabaseReference userRef = database.getReference("users/" + uuid);
 
         Map<String, Object> userInfos = new HashMap<>();
         userInfos.put("usuario",nome);
@@ -143,6 +146,7 @@ public class ScrollingActivity extends AppCompatActivity {
         userInfos.put("status",ativocheck);
         userInfos.put("download",download);
         userInfos.put("upload",upload);
+        userInfos.put("uid",uuid);
         userRef.setValue(userInfos);
         mt = new MyTask();
         mt.execute();

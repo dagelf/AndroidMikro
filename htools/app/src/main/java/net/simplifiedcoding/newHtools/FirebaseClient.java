@@ -50,11 +50,10 @@ public class FirebaseClient {
         Pessoa p = new Pessoa();
         Pessoa p1 = new Pessoa();
         p.setEmail("joao@gmail.com");
-        p.setNome("Joao Araujo de Sousa");
-        p1.setEmail("rosa@gmail.com");
-        p1.setNome("Rosa Araujo de Sousa");
+        p.setUsuario("Joao Araujo de Sousa");
+
         pessoas.add(p);
-        pessoas.add(p1);
+
 
         customAdapter = new CustomAdapter(c, pessoas);
         listView.setAdapter((ListAdapter) customAdapter);
@@ -80,7 +79,7 @@ public class FirebaseClient {
 
             user = objSnapshot.child("usuario").getValue(String.class);
             mail = objSnapshot.child("email").getValue(String.class);
-            p.setNome(user);
+            p.setUsuario(user);
             p.setEmail(mail);
             p.setDownload("300");
             p.setUpload("300");
@@ -116,7 +115,7 @@ public class FirebaseClient {
 
                     user = objSnapshot.child("usuario").getValue(String.class);
                     sexo = objSnapshot.child("sexo").getValue(String.class);
-                    p.setNome(user);
+                    p.setUsuario(user);
                     p.setSexo(sexo);
                     size =size +1;
 

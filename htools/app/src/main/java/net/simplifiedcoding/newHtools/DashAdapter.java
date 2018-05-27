@@ -88,7 +88,7 @@ public class DashAdapter  {
                     }if (check.equals("Bloqueado")){
                         qtdBloqueado = qtdBloqueado +1;
                     }
-                    p.setNome(user);
+                    p.setUsuario(user);
                     p.setSexo(sexo);
                     pessoas.add(p);
 
