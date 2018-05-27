@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
@@ -69,11 +70,11 @@ public class HomeFragment extends Fragment {
 //        mBarChart.startAnimation();
 
 
-
+        ListView listView = (ListView) vhome.findViewById(R.id.listView);
         PieChart mPieChart = (PieChart) vhome.findViewById(R.id.piechart);
-        mPieChart.addPieSlice(new PieModel("Masculino", 50, Color.parseColor("#56B7F1")));
-        mPieChart.addPieSlice(new PieModel("Femino", 45, Color.parseColor("#FE6DA8")));
-
+//        mPieChart.addPieSlice(new PieModel("Masculino", 50, Color.parseColor("#56B7F1")));
+//        mPieChart.addPieSlice(new PieModel("Femino", 45, Color.parseColor("#FE6DA8")));
+//
 
         ValueLineChart mCubicValueLineChart = (ValueLineChart) vhome.findViewById(R.id.cubiclinechart);
 
@@ -93,6 +94,8 @@ public class HomeFragment extends Fragment {
 
         mCubicValueLineChart.addSeries(series);
         mCubicValueLineChart.startAnimation();
+        DashAdapter d = new DashAdapter(getActivity(),vhome);
+        d.usersCount();
         return vhome;
     }
 }

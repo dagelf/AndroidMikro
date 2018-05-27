@@ -28,11 +28,13 @@ public class FirebaseClient {
     ListView listView;
     Context c;
     CustomAdapter customAdapter;
-    private Integer count;
+    int count;
+    public int size = 0 ;
 
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
     private FirebaseAuth mAuth;
+    Pessoa p = new Pessoa();
     DatabaseReference userRef ;
 //    FirebaseUser user = mAuth.getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -41,7 +43,7 @@ public class FirebaseClient {
     {
         this.c= c;
         this.listView= listView;
-        count=0 ;}
+        }
 
     public  void refreshdata()
     {
@@ -88,7 +90,7 @@ public class FirebaseClient {
 
         }
         //count
-        count = pessoas.size();
+
 
         if(pessoas.size()>0)
         {
@@ -109,47 +111,28 @@ public class FirebaseClient {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
                     String user;
-                    String mail;
-                    String down;
-                    String up;
                     String sexo;
-                    String ativo;
-                    Pessoa p = new Pessoa();
+
 
                     user = objSnapshot.child("usuario").getValue(String.class);
-                    mail = objSnapshot.child("email").getValue(String.class);
-                    down = objSnapshot.child("download").getValue(String.class);
-                    up = objSnapshot.child("upload").getValue(String.class);
                     sexo = objSnapshot.child("sexo").getValue(String.class);
-                    ativo = objSnapshot.child("ativo").getValue(String.class);
-
                     p.setNome(user);
-                    p.setEmail(mail);
-                    p.setDownload(down);
-                    p.setUpload(up);
                     p.setSexo(sexo);
+                    size =size +1;
 
                     pessoas.add(p);
 
                 }
-                //count
-
-
-                if(pessoas.size()>0)
-                {
-                    customAdapter = new CustomAdapter(c, pessoas);
-                    listView.setAdapter((ListAdapter) customAdapter);
-
-
-                }else
-                {
-                    Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
-                }
+                count = pessoas.size();
+                System.out.println(pessoas.size());
+                System.out.println(size);
 
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {}
         });
+        System.out.println("FINAL" + pessoas.size());
+        System.out.println(size);
 
     }
 
