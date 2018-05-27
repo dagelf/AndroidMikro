@@ -93,9 +93,7 @@ public class DashAdapter  {
 
 
                 mBarChart.addBar(new BarModel("Ativos",qtdAtivo, 0xFF56B7F1));
-                mBarChart.addBar(new BarModel("Bloquados",qtdBloqueado,  0xFF343456));
-                
-
+                mBarChart.addBar(new BarModel("Bloqueados",qtdBloqueado,  0xFF343456));
 
                 mBarChart.startAnimation();
 
