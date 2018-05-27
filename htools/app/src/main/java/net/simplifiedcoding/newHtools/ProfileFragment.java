@@ -102,25 +102,38 @@ public class ProfileFragment extends Fragment {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_novo:
+                Perfis p = new Perfis();
+                p.setUid(UUID.randomUUID().toString());
+                p.setDownload(editDown.getText().toString().trim());
+                p.setUpload(editUp.getText().toString().trim());
+                databaseReference.child("perfil").child(p.getUid()).setValue(p);
+                limparCampos();
 
 
-                String uuid;
-                String downlod = editDown.getText().toString().trim();
-                String upload = editUp.getText().toString().trim();
-                uuid = UUID.randomUUID().toString();
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                DatabaseReference userRef = database.getReference("perfil/" + uuid);
-                System.out.println("UUID  ====> " + uuid);
-
-                Map<String, Object> userInfos = new HashMap<>();
-                userInfos.put("download",downlod);
-                userInfos.put("upload",upload);
-                System.out.println("USER " + userInfos.toString());
-                userRef.setValue(userInfos);
+//                String uuid;
+//                String downlod = editDown.getText().toString().trim();
+//                String upload = editUp.getText().toString().trim();
+//                uuid = UUID.randomUUID().toString();
+//                FirebaseDatabase database = FirebaseDatabase.getInstance();
+//                DatabaseReference userRef = database.getReference("perfil/" + uuid);
+//                System.out.println("UUID  ====> " + uuid);
+//
+//                Map<String, Object> userInfos = new HashMap<>();
+//                userInfos.put("download",downlod);
+//                userInfos.put("upload",upload);
+//                System.out.println("USER " + userInfos.toString());
+//                userRef.setValue(userInfos);
                 limparCampos();
                 Toast.makeText(getActivity(), "Novo Perfil" , Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_atualiza:
+
+                Perfis pp = new Perfis();
+                pp.setUid(perfilSelecionada.getUid());
+                pp.setDownload(editDown.getText().toString().trim());
+                pp.setUpload(editUp.getText().toString().trim());
+                databaseReference.child("perfil").child(pp.getUid()).setValue(pp);
+                limparCampos();
                 Toast.makeText(getActivity(), "Atualizar", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_deleta:
