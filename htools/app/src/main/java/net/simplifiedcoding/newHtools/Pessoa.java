@@ -14,6 +14,7 @@ public class Pessoa {
     private String sexo;
     private String status;
     private String uid;
+    private String data;
 
 
     public String getUsuario() {
@@ -78,5 +79,13 @@ public class Pessoa {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
     }
 }

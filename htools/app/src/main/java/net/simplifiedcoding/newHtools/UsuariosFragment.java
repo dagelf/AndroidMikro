@@ -60,7 +60,14 @@ public class UsuariosFragment extends Fragment {
 //                bundle.putSerializable("pessoa", pessoas);
                 Intent intent = new Intent(getActivity(), UpdateUser.class);
                 String parametros =  pessoaSelecionada.getUsuario();
-                intent.putExtra("infos", parametros);
+                intent.putExtra("usuario", pessoaSelecionada.getUsuario());
+                intent.putExtra("email", pessoaSelecionada.getEmail());
+                intent.putExtra("data", pessoaSelecionada.getData());
+                intent.putExtra("download", pessoaSelecionada.getDownload());
+                intent.putExtra("upload", pessoaSelecionada.getUpload());
+                intent.putExtra("senha", pessoaSelecionada.getSenha());
+                intent.putExtra("uuid", pessoaSelecionada.getUid());
+                intent.putExtra("status", pessoaSelecionada.getStatus());
 
                 startActivity(intent);
 
