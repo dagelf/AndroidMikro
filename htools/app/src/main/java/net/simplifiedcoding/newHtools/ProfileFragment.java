@@ -33,7 +33,10 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 
 public class ProfileFragment extends Fragment {
@@ -48,6 +51,7 @@ public class ProfileFragment extends Fragment {
 
     Perfis perfilSelecionada;
     /// menu
+    private FirebaseAuth mAuth;
     Menu menu;
     View vProfile;
     public ProfileFragment(){
@@ -66,6 +70,8 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
          vProfile = inflater.inflate(R.layout.fragment_profile, container, false);
+         editDown = (EditText) vProfile.findViewById(R.id.editNome);
+         editUp = (EditText) vProfile.findViewById(R.id.editEmail);
         return vProfile;
     }
 
@@ -79,6 +85,30 @@ public class ProfileFragment extends Fragment {
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.menu_novo:
+
+//                FirebaseUser user = mAuth.getCurrentUser();
+                String uuid;
+                String downlod = editDown.getText().toString().trim();
+                String upload = editUp.getText().toString().trim();
+                uuid = UUID.randomUUID().toString();
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference userRef = database.getReference("perfil/" + uuid);
+                System.out.println("UUID  ====> " + uuid);
+
+                Map<String, Object> userInfos = new HashMap<>();
+                userInfos.put("download",downlod);
+                userInfos.put("upload",upload);
+                System.out.println("USER " + userInfos.toString());
+                userRef.setValue(userInfos);
+//                Perfis p = new Perfis();
+//                p.setUid(UUID.randomUUID().toString());
+//                p.setDownload("TESTE");
+////                p.setDownload(editDown.getText().toString());
+////                p.setUpload(editUp.getText().toString());
+//                p.setUpload("TESTE");
+//                System.out.println(p.toString());
+//                databaseReference.child("Perfil").child(p.getUid()).setValue(p);
+                limparCampos();
                 Toast.makeText(getActivity(), "Novo", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_atualiza:
@@ -120,7 +150,10 @@ public class ProfileFragment extends Fragment {
         firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = firebaseDatabase.getReference();
     }
-
+    private void limparCampos() {
+        editDown.setText("");
+        editUp.setText("");
+    }
 
     }
 
