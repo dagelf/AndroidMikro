@@ -35,6 +35,8 @@ public class DashAdapter  {
     Pessoa p = new Pessoa();
     int qtdM =0;
     int qtdF =0;
+    int qtdAtivo = 0;
+    int qtdBloqueado = 0;
 
     public DashAdapter(Context c, View view) {
         this.c = c;
@@ -52,15 +54,23 @@ public class DashAdapter  {
                 for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
                     String user;
                     String sexo;
+                    String status;
                     user = objSnapshot.child("usuario").getValue(String.class);
                     sexo = objSnapshot.child("sexo").getValue(String.class);
-                    System.out.println(sexo);
+                    status = objSnapshot.child("status").getValue(String.class);
+
+                    String check = status.trim();
                     String sex = sexo.trim();
                     if(sex.equals("M")){
                         qtdM = qtdM + 1;
                     }
                      if(sex.equals("F")){
                         qtdF = qtdF + 1;
+                    }
+                    if (check.equals("Ativo")){
+                         qtdAtivo = qtdAtivo +1;
+                    }if (check.equals("Bloqueado")){
+                        qtdBloqueado = qtdBloqueado +1;
                     }
                     p.setNome(user);
                     p.setSexo(sexo);
@@ -75,9 +85,8 @@ public class DashAdapter  {
 
                 System.out.println("M " + qtdM);
                 System.out.println("F " + qtdF);
-
-
-
+                System.out.println("A " + qtdAtivo);
+                System.out.println("B " + qtdBloqueado);
 
             }
             @Override
