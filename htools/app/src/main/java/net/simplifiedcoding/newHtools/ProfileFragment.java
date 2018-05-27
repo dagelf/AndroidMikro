@@ -137,6 +137,10 @@ public class ProfileFragment extends Fragment {
                 Toast.makeText(getActivity(), "Atualizar", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_deleta:
+                Perfis pd = new Perfis();
+                pd.setUid(perfilSelecionada.getUid());
+                databaseReference.child("perfil").child(pd.getUid()).removeValue();
+                limparCampos();
                 Toast.makeText(getActivity(), "Deletar", Toast.LENGTH_SHORT).show();
                 return true;
             default:
