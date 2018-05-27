@@ -41,12 +41,14 @@ public class DashboardFragment extends Fragment {
     public  String count ="";
     public TextView txtOn;
     public TextView txtCad;
-    MyTask mt;
+   // MyTask mt;
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
     DashAdapter dashAdapter;
     private Activity activity;
     String resultado;
+
+
 
     @Nullable
     @Override
@@ -63,57 +65,7 @@ public class DashboardFragment extends Fragment {
 //         mt.execute();
         return vDash;
     }
-    class MyTask extends AsyncTask<Void,Void,Void> {
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            Log.d(LOG_TAG, "startOn");
-            //tvResult.setText("Begin");
-        }
 
-        @Override
-        protected Void doInBackground(Void... params) {
-            try {
-                try {
-                    Log.d(LOG_TAG, "start");
-
-
-                    ApiConnection con = ApiConnection.connect(SocketFactory.getDefault(), Config.HOST, ApiConnection.DEFAULT_PORT, 200);
-
-                    Log.d(LOG_TAG, "start2");
-                    con.login(Config.USERNAME, Config.PASSWORD);
-
-
-                    if (con.isConnected()) {
-                        //tvResult.setText("OK!");
-                        Log.d(LOG_TAG, "isConnected");
-
-                        result = con.execute("/ip/hotspot/active/print count-only");
-                        for (Map<String, String> res : result) {
-
-                            System.out.println("ATIVOS " + res.values());
-                            txtOn.setText(res.values().toString());
-
-                        }
-                    }
-
-                    con.close();
-                } catch (Exception e) {
-                    Log.d(LOG_TAG, "error");
-                    Log.d(LOG_TAG, e.getMessage());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            super.onPostExecute(result);
-            Log.d(LOG_TAG, "FIM");
-        }
-    }
 
 
 }
