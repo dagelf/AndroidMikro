@@ -90,6 +90,8 @@ public class ProfileFragment extends Fragment {
                 perfilSelecionada = (Perfis) parent.getItemAtPosition(position);
                 editDown.setText(perfilSelecionada.getDownload());
                 editUp.setText(perfilSelecionada.getUpload());
+                editTimeout.setText(perfilSelecionada.getTimeout());
+                editNome.setText(perfilSelecionada.getNome());
             }
         });
 
@@ -183,6 +185,8 @@ public class ProfileFragment extends Fragment {
     private void limparCampos() {
         editDown.setText("");
         editUp.setText("");
+        editNome.setText("");
+        editTimeout.setText("");
     }
 
     }
