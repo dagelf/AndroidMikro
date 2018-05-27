@@ -2,6 +2,8 @@ package net.simplifiedcoding.newHtools;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,12 @@ import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.net.SocketFactory;
+
+import me.legrange.mikrotik.ApiConnection;
 
 /**
  * Created by jeferson on 23/05/18.
@@ -42,6 +50,9 @@ public class DashAdapter  {
     int qtdAtivo = 0;
     int qtdBloqueado = 0;
     int qtdUser = 0;
+    MyTask mt;
+    public List<Map<String, String>> result = null;
+    public TextView txtOn;
 
     public DashAdapter(Context c, View view) {
         this.c = c;
@@ -109,6 +120,8 @@ public class DashAdapter  {
 
     }
     public void userCount(){
+        mt = new MyTask();
+        mt.execute();
 
 
 
@@ -137,5 +150,59 @@ public class DashAdapter  {
 
 
 
+    }
+
+    class MyTask extends AsyncTask<Void,Void,Void> {
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+
+            //tvResult.setText("Begin");
+        }
+
+        @Override
+        protected Void doInBackground(Void... params) {
+            try {
+                try {
+
+
+
+                    ApiConnection con = ApiConnection.connect(SocketFactory.getDefault(), Config.HOST, ApiConnection.DEFAULT_PORT, 200);
+                    txtOn = (TextView) view.findViewById(R.id.texOnline);
+
+
+                    con.login(Config.USERNAME, Config.PASSWORD);
+
+
+                    if (con.isConnected()) {
+                        //tvResult.setText("OK!");
+
+                        String online = "";
+                        result = con.execute("/ip/hotspot/active/print count-only");
+                        for (Map<String, String> res : result) {
+
+                            System.out.println("ATIVOS " + res.values());
+                            online = res.values().toString();
+
+                        }
+                        txtOn.setText(online);
+                    }
+
+                    con.close();
+                } catch (Exception e) {
+
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            super.onPostExecute(result);
+            
+
+        }
     }
 }
