@@ -33,7 +33,7 @@ public class FirebaseClient {
 
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
-
+    Pessoa pessoaSelecionada;
     private FirebaseAuth mAuth;
     Pessoa p = new Pessoa();
     DatabaseReference userRef ;
@@ -79,15 +79,6 @@ public class FirebaseClient {
             String download;
             String uplod;
             Pessoa p  =  objSnapshot.getValue(Pessoa.class);
-
-//            user = objSnapshot.child("usuario").getValue(String.class);
-//            mail = objSnapshot.child("email").getValue(String.class);
-//            p.setUsuario(user);
-//            p.setEmail(mail);
-//            p.setDownload("300");
-//            p.setUpload("300");
-//            p.setStatus("ativo");
-
             pessoas.add(p);
 
 
@@ -105,6 +96,18 @@ public class FirebaseClient {
         {
             Toast.makeText(c, "Nada Aqui, Sorry !", Toast.LENGTH_SHORT).show();
         }
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+                Toast toast = Toast.makeText(c, pessoaSelecionada.getUsuario(),Toast.LENGTH_LONG);
+                toast.show();
+
+            }
+        });
+
+
     }
 
     public void usersCount(){

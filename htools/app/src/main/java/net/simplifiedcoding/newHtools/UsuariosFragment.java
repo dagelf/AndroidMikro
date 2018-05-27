@@ -42,14 +42,7 @@ public class UsuariosFragment extends Fragment {
                 startActivity(it);
             }
         });
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast toast = Toast.makeText(getView().getContext(), "Click evento ",Toast.LENGTH_LONG);
-                toast.show();
 
-            }
-        });
 
         FirebaseClient f = new FirebaseClient(getActivity(),listView);
         f.getUsers();
