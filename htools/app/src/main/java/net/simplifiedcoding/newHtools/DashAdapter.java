@@ -91,8 +91,10 @@ public class DashAdapter  {
                 System.out.println("B " + qtdBloqueado);
                 BarChart mBarChart = (BarChart) view.findViewById(R.id.barchart);
 
-                mBarChart.addBar(new BarModel(qtdAtivo, 0xFF56B7F1));
-                mBarChart.addBar(new BarModel(qtdBloqueado,  0xFF343456).getLegendLabel("dfdsf"));
+
+                mBarChart.addBar(new BarModel("Ativos",qtdAtivo, 0xFF56B7F1));
+                mBarChart.addBar(new BarModel("Bloquados",qtdBloqueado,  0xFF343456));
+                
 
 
                 mBarChart.startAnimation();
