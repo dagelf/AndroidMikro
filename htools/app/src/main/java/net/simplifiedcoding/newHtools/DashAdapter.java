@@ -92,7 +92,8 @@ public class DashAdapter  {
                 BarChart mBarChart = (BarChart) view.findViewById(R.id.barchart);
 
                 mBarChart.addBar(new BarModel(qtdAtivo, 0xFF56B7F1));
-                mBarChart.addBar(new BarModel(qtdBloqueado,  0xFF343456));
+                mBarChart.addBar(new BarModel(qtdBloqueado,  0xFF343456).getLegendLabel("dfdsf"));
+
 
                 mBarChart.startAnimation();
 
