@@ -68,6 +68,7 @@ public class UsuariosFragment extends Fragment {
                 intent.putExtra("senha", pessoaSelecionada.getSenha());
                 intent.putExtra("uuid", pessoaSelecionada.getUid());
                 intent.putExtra("status", pessoaSelecionada.getStatus());
+                intent.putExtra("sexo", pessoaSelecionada.getSexo());
 
                 startActivity(intent);
 
