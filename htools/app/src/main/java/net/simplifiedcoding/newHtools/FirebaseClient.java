@@ -33,6 +33,7 @@ public class FirebaseClient {
 
 
     ArrayList<Pessoa> pessoas= new ArrayList<>();
+
     private FirebaseAuth mAuth;
     Pessoa p = new Pessoa();
     DatabaseReference userRef ;
@@ -75,17 +76,20 @@ public class FirebaseClient {
         for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
             String user;
             String mail;
-            Pessoa p = new Pessoa();
+            String download;
+            String uplod;
+            Pessoa p  =  objSnapshot.getValue(Pessoa.class);
 
-            user = objSnapshot.child("usuario").getValue(String.class);
-            mail = objSnapshot.child("email").getValue(String.class);
-            p.setUsuario(user);
-            p.setEmail(mail);
-            p.setDownload("300");
-            p.setUpload("300");
-            p.setStatus("ativo");
+//            user = objSnapshot.child("usuario").getValue(String.class);
+//            mail = objSnapshot.child("email").getValue(String.class);
+//            p.setUsuario(user);
+//            p.setEmail(mail);
+//            p.setDownload("300");
+//            p.setUpload("300");
+//            p.setStatus("ativo");
 
             pessoas.add(p);
+
 
         }
         //count
