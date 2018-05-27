@@ -79,7 +79,14 @@ public class ProfileFragment extends Fragment {
         perfils = new ArrayList<>();
 
         eventoDatabase();
-        ////////////////////////////////////////////
+        listV_dados.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                perfilSelecionada = (Perfis) parent.getItemAtPosition(position);
+                editDown.setText(perfilSelecionada.getDownload());
+                editUp.setText(perfilSelecionada.getUpload());
+            }
+        });
 
 
         return vProfile;
