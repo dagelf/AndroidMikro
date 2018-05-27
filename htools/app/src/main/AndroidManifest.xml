@@ -27,6 +27,10 @@
             android:label="@string/title_activity_scrolling"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
+            android:name="net.simplifiedcoding.newHtools.UpdateUser"
+            android:label="@string/title_activity_scrolling"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name="net.simplifiedcoding.newHtools.Detalhe_users"
             android:label="@string/title_activity_detalhe_users"
             android:theme="@style/AppTheme.NoActionBar"></activity>

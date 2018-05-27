@@ -52,13 +52,12 @@ public class UsuariosFragment extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+//                Toast toast = Toast.makeText(getActivity(), pessoaSelecionada.getUsuario() + pessoaSelecionada.getEmail(),Toast.LENGTH_LONG);
+//                toast.show();
 
-
-                Toast toast = Toast.makeText(getActivity(), pessoaSelecionada.getUsuario() + pessoaSelecionada.getEmail(),Toast.LENGTH_LONG);
-                toast.show();
-
-                // Intent it = new Intent(c, ScrollingActivity.class);
-                /// startActivity(it);
+                Intent it = new Intent(getActivity(), UpdateUser.class);
+                
+                startActivity(it);
 
             }
         });
