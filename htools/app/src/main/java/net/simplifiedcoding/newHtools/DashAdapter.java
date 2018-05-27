@@ -16,7 +16,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import net.simplifiedcoding.bottomnavigationexample.R;
 
+import org.eazegraph.lib.charts.BarChart;
 import org.eazegraph.lib.charts.PieChart;
+import org.eazegraph.lib.models.BarModel;
 import org.eazegraph.lib.models.PieModel;
 
 import java.util.ArrayList;
@@ -87,6 +89,12 @@ public class DashAdapter  {
                 System.out.println("F " + qtdF);
                 System.out.println("A " + qtdAtivo);
                 System.out.println("B " + qtdBloqueado);
+                BarChart mBarChart = (BarChart) view.findViewById(R.id.barchart);
+
+                mBarChart.addBar(new BarModel(qtdAtivo, 0xFF56B7F1));
+                mBarChart.addBar(new BarModel(qtdBloqueado,  0xFF343456));
+                
+                mBarChart.startAnimation();
 
             }
             @Override
