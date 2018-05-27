@@ -58,15 +58,19 @@ public class DashAdapter  {
                     user = objSnapshot.child("usuario").getValue(String.class);
                     sexo = objSnapshot.child("sexo").getValue(String.class);
                     System.out.println(sexo);
+                    String sex = sexo.trim();
+                    if(sex.equals("M")){
+                        qtdM = qtdM + 1;
+                    }
+                     if(sex.equals("F")){
+                        qtdF = qtdF + 1;
+                    }
                     p.setNome(user);
                     p.setSexo(sexo);
                     pessoas.add(p);
 
                 }
-                for(int i = 0; i < pessoas.size(); i++)
-                {
-                    System.out.println(pessoas.get(i).getSexo());
-                }
+
 
 //                for (Pessoa p : pessoas){
 //                    //System.out.println(p.getSexo());
@@ -76,9 +80,9 @@ public class DashAdapter  {
 //                    }  if(sex.equals("F")){
 //                        qtdF = qtdF + 1;
 //                    }
-                }
-//                System.out.println("M " + qtdM);
-//                System.out.println("F " + qtdF);
+                //}
+                System.out.println("M " + qtdM);
+                System.out.println("F " + qtdF);
 
 
 
