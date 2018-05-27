@@ -110,15 +110,24 @@ public class FirebaseClient {
                 for(DataSnapshot objSnapshot:dataSnapshot.getChildren()){
                     String user;
                     String mail;
+                    String down;
+                    String up;
+                    String sexo;
+                    String ativo;
                     Pessoa p = new Pessoa();
 
                     user = objSnapshot.child("usuario").getValue(String.class);
                     mail = objSnapshot.child("email").getValue(String.class);
+                    down = objSnapshot.child("download").getValue(String.class);
+                    up = objSnapshot.child("upload").getValue(String.class);
+                    sexo = objSnapshot.child("sexo").getValue(String.class);
+                    ativo = objSnapshot.child("ativo").getValue(String.class);
+
                     p.setNome(user);
                     p.setEmail(mail);
-                    p.setDownload("300");
-                    p.setUpload("300");
-                    p.setStatus("ativo");
+                    p.setDownload(down);
+                    p.setUpload(up);
+                    p.setSexo(sexo);
 
                     pessoas.add(p);
 

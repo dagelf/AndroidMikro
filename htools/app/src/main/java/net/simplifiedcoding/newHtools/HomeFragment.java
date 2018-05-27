@@ -8,6 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.FirebaseDatabase;
+
 import net.simplifiedcoding.bottomnavigationexample.R;
 
 import org.eazegraph.lib.charts.BarChart;
@@ -18,11 +21,22 @@ import org.eazegraph.lib.models.PieModel;
 import org.eazegraph.lib.models.ValueLinePoint;
 import org.eazegraph.lib.models.ValueLineSeries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Belal on 1/23/2018.
  */
 
 public class HomeFragment extends Fragment {
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+
+
+
+    private List<Pessoa> listUsuario = new ArrayList<>();
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

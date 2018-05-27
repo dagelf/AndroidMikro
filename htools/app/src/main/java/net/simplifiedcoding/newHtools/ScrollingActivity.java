@@ -53,7 +53,7 @@ public class ScrollingActivity extends AppCompatActivity {
     private CheckBox checkAtivo;
     String sexo;
     String enable = "yes";
-    String ativo = "N";
+    String ativo = "Bloqueado";
     MyTask mt;
 
     final  String LOG_TAG = "mLog";
@@ -90,7 +90,7 @@ public class ScrollingActivity extends AppCompatActivity {
                     sexo = "F";
                 }
                 if (checkAtivo.isChecked()){
-                    ativo="S";
+                    ativo="Ativo";
                     enable = "no";
                 }else{
                     enable="yes";
@@ -140,7 +140,7 @@ public class ScrollingActivity extends AppCompatActivity {
         userInfos.put("senha",senha);
         userInfos.put("data",data);
         userInfos.put("sexo",sexocheck);
-        userInfos.put("boqueado",ativocheck);
+        userInfos.put("status",ativocheck);
         userInfos.put("download",download);
         userInfos.put("upload",upload);
         userRef.setValue(userInfos);
