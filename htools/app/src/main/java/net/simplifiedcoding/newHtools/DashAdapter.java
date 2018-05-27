@@ -43,9 +43,6 @@ public class DashAdapter  {
 
     public void usersCount(){
 
-        PieChart mPieChart = (PieChart) view.findViewById(R.id.piechart);
-        mPieChart.addPieSlice(new PieModel("Masculino", 150, Color.parseColor("#56B7F1")));
-        mPieChart.addPieSlice(new PieModel("Femino", 45, Color.parseColor("#FE6DA8")));
 
 
         userRef = database.getReference("users/");
@@ -72,15 +69,10 @@ public class DashAdapter  {
                 }
 
 
-//                for (Pessoa p : pessoas){
-//                    //System.out.println(p.getSexo());
-//                    String sex = p.getSexo();
-//                    if(sex.equals("M")){
-//                        qtdM = qtdM + 1;
-//                    }  if(sex.equals("F")){
-//                        qtdF = qtdF + 1;
-//                    }
-                //}
+                PieChart mPieChart = (PieChart) view.findViewById(R.id.piechart);
+                mPieChart.addPieSlice(new PieModel("Masculino", qtdM, Color.parseColor("#56B7F1")));
+                mPieChart.addPieSlice(new PieModel("Femino", qtdF, Color.parseColor("#FE6DA8")));
+
                 System.out.println("M " + qtdM);
                 System.out.println("F " + qtdF);
 
