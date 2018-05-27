@@ -7,9 +7,8 @@ package net.simplifiedcoding.newHtools;
 public class Perfis {
     private String download;
     private String upload;
-    private String timeout;
     private String uid;
-    private String nome;
+
 
 public Perfis(){
 
@@ -31,13 +30,6 @@ public Perfis(){
         this.upload = upload;
     }
 
-    public String getTimeout() {
-        return timeout;
-    }
-
-    public void setTimeout(String timeout) {
-        this.timeout = timeout;
-    }
 
     public String getUid() {
         return uid;
@@ -47,17 +39,10 @@ public Perfis(){
         this.uid = uid;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     @Override
     public String toString() {
-        return nome;
+        return download;
     }
 
 }

@@ -48,6 +48,8 @@ public class ProfileFragment extends Fragment {
 
     private List<Perfis> listPerfil = new ArrayList<Perfis>();
     private ArrayAdapter<Perfis> arrayAdapterPerfil;
+    private ArrayList<String> perfils;
+
 
     Perfis perfilSelecionada;
     /// menu
@@ -72,6 +74,14 @@ public class ProfileFragment extends Fragment {
          vProfile = inflater.inflate(R.layout.fragment_profile, container, false);
          editDown = (EditText) vProfile.findViewById(R.id.editNome);
          editUp = (EditText) vProfile.findViewById(R.id.editEmail);
+        listV_dados = (ListView) vProfile.findViewById(R.id.listV_dados) ;
+       // inicializarFirebase();
+        perfils = new ArrayList<>();
+
+        eventoDatabase();
+        ////////////////////////////////////////////
+
+
         return vProfile;
     }
 
@@ -86,7 +96,7 @@ public class ProfileFragment extends Fragment {
         switch (item.getItemId()) {
             case R.id.menu_novo:
 
-//                FirebaseUser user = mAuth.getCurrentUser();
+
                 String uuid;
                 String downlod = editDown.getText().toString().trim();
                 String upload = editUp.getText().toString().trim();
@@ -100,16 +110,8 @@ public class ProfileFragment extends Fragment {
                 userInfos.put("upload",upload);
                 System.out.println("USER " + userInfos.toString());
                 userRef.setValue(userInfos);
-//                Perfis p = new Perfis();
-//                p.setUid(UUID.randomUUID().toString());
-//                p.setDownload("TESTE");
-////                p.setDownload(editDown.getText().toString());
-////                p.setUpload(editUp.getText().toString());
-//                p.setUpload("TESTE");
-//                System.out.println(p.toString());
-//                databaseReference.child("Perfil").child(p.getUid()).setValue(p);
                 limparCampos();
-                Toast.makeText(getActivity(), "Novo", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "Novo Perfil" , Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menu_atualiza:
                 Toast.makeText(getActivity(), "Atualizar", Toast.LENGTH_SHORT).show();
@@ -124,7 +126,9 @@ public class ProfileFragment extends Fragment {
 
 
     private void eventoDatabase() {
-        databaseReference.child("Pessoa").addValueEventListener(new ValueEventListener() {
+        firebaseDatabase = FirebaseDatabase.getInstance();
+        databaseReference = firebaseDatabase.getReference();
+        databaseReference.child("perfil").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listPerfil.clear();
@@ -132,9 +136,14 @@ public class ProfileFragment extends Fragment {
                     Perfis p = objSnapshot.getValue(Perfis.class);
                     listPerfil.add(p);
                 }
-//                arrayAdapterPerfil= new ArrayAdapter<Pessoa>(getActivity(),
-//                        android.R.layout.simple_list_item_1,listPerfil);
-//                listV_dados.setAdapter(arrayAdapterPessoa);
+                System.out.println("LISTA   " + listPerfil.toString());
+
+
+
+                arrayAdapterPerfil= new ArrayAdapter<Perfis>(
+                        getActivity(),
+                        android.R.layout.simple_list_item_1,listPerfil);
+                listV_dados.setAdapter(arrayAdapterPerfil);
             }
 
             @Override
@@ -145,9 +154,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private void inicializarFirebase() {
-        FirebaseApp.initializeApp(getActivity());
+        //FirebaseApp.initializeApp(getActivity());
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true);
         databaseReference = firebaseDatabase.getReference();
     }
     private void limparCampos() {
