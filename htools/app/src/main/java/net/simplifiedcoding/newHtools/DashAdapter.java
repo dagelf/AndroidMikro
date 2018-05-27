@@ -45,7 +45,7 @@ public class DashAdapter  {
         this.view = view;
     }
 
-    public void usersCount(){
+    public void dashCount(){
 
 
 
@@ -93,7 +93,7 @@ public class DashAdapter  {
 
                 mBarChart.addBar(new BarModel(qtdAtivo, 0xFF56B7F1));
                 mBarChart.addBar(new BarModel(qtdBloqueado,  0xFF343456));
-                
+
                 mBarChart.startAnimation();
 
             }

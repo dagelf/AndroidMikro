@@ -83,7 +83,7 @@ public class HomeFragment extends Fragment {
 //        mCubicValueLineChart.addSeries(series);
 //        mCubicValueLineChart.startAnimation();
         DashAdapter d = new DashAdapter(getActivity(),vhome);
-        d.usersCount();
+        d.dashCount();
         return vhome;
     }
 }
