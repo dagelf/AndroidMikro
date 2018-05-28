@@ -44,6 +44,7 @@ public class UpdateUser extends AppCompatActivity {
     String sexo;
     String enable = "yes";
     String ativo = "Bloqueado";
+    String ativar;
     String uuid;
     MyTask mt;
     FirebaseDatabase firebaseDatabase;
@@ -111,9 +112,11 @@ public class UpdateUser extends AppCompatActivity {
                 if (checkAtivo.isChecked()){
                     ativo="Ativo";
                     enable = "no";
+                    ativar ="enable";
 
                 }else{
                     enable="yes";
+                    ativar="disable";
                 }
 
                 salvar();
@@ -228,7 +231,7 @@ public class UpdateUser extends AppCompatActivity {
                     final String nome = editNome.getText().toString().trim();
                     final String down = editDown.getText().toString().trim();
                     final String up = editUp.getText().toString().trim();
-                    final String status = enable;
+                    final String status = ativar;
 
 
 
@@ -240,7 +243,7 @@ public class UpdateUser extends AppCompatActivity {
                     System.out.println(up);
 
 
-                    result = con.execute("/ip hotspot/user/disable/numbers=teste");
+                    result = con.execute("/ip/hotspot/user/"+status+ " numbers="+usuario);
                     //result = con.execute("/ip/hotspot/user/set password=" + senha + " disabled="+status + " limit-bytes-out="+up+ " limit-bytes-in=" + down  +" " + usuario);
                     System.out.println("aki " +result.toString());
 
