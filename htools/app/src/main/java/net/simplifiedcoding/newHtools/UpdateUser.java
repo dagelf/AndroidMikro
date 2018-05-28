@@ -111,6 +111,7 @@ public class UpdateUser extends AppCompatActivity {
                 if (checkAtivo.isChecked()){
                     ativo="Ativo";
                     enable = "no";
+
                 }else{
                     enable="yes";
                 }
@@ -185,8 +186,8 @@ public class UpdateUser extends AppCompatActivity {
 //        userInfos.put("upload",upload);
 //        userInfos.put("uid",uuid);
 //        userRef.setValue(userInfos);
-//        mt = new MyTask();
-//        mt.execute();
+        mt = new MyTask();
+        mt.execute();
         finish();
         Toast toast = Toast.makeText(this,"Usuario Atualizado !",Toast.LENGTH_LONG);
         toast.show();
@@ -227,17 +228,21 @@ public class UpdateUser extends AppCompatActivity {
                     final String nome = editNome.getText().toString().trim();
                     final String down = editDown.getText().toString().trim();
                     final String up = editUp.getText().toString().trim();
+                    final String status = enable;
 
 
 
                     System.out.println(nome);
                     System.out.println(usuario);
                     System.out.println(senha);
-                    System.out.println(enable);
+                    System.out.println(status);
+                    System.out.println(down);
+                    System.out.println(up);
 
 
-                    result = con.execute("/ip/hotspot/user/add name=" + usuario + " password=" + senha + " limit-bytes-out="+up+ " limit-bytes-in=" + down + " disabled="+enable);
-                    System.out.println(result.toString());
+                    result = con.execute("/ip hotspot/user/disable/numbers=teste");
+                    //result = con.execute("/ip/hotspot/user/set password=" + senha + " disabled="+status + " limit-bytes-out="+up+ " limit-bytes-in=" + down  +" " + usuario);
+                    System.out.println("aki " +result.toString());
 
 // mt = new MyTask();
 //                    mt.execute();
